@@ -5,296 +5,124 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>聚餐好選擇 🍽️</title>
 <style>
-/* ── Google Font ── */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
-
 :root {
-  --red:     #E84040;
-  --orange:  #F97316;
-  --yellow:  #FBBF24;
-  --green:   #22C55E;
-  --bg:      #FFF8F0;
-  --card:    #FFFFFF;
-  --text:    #1A1A1A;
-  --muted:   #888;
-  --border:  #E5D8CC;
-  --radius:  16px;
-  --shadow:  0 4px 20px rgba(0,0,0,0.08);
+  --red:#E84040;--orange:#F97316;--yellow:#FBBF24;--green:#22C55E;
+  --bg:#FFF8F0;--card:#FFFFFF;--text:#1A1A1A;--muted:#888;
+  --border:#E5D8CC;--radius:16px;--shadow:0 4px 20px rgba(0,0,0,0.08);
 }
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-  font-family: 'Noto Sans TC', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-}
-
-/* ── 頂部 Banner ── */
-.banner {
-  background: linear-gradient(135deg, var(--red) 0%, var(--orange) 100%);
-  color: white;
-  padding: 24px 20px 20px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-.banner::before {
-  content: '🍜🥢🍺🎉🍗🦞🔥';
-  position: absolute; top: -4px; left: 0; right: 0;
-  font-size: 28px; letter-spacing: 4px; opacity: 0.15;
-}
-.banner h1 { font-size: 28px; font-weight: 900; letter-spacing: 2px; }
-.banner .subtitle {
-  font-size: 13px; margin-top: 6px; opacity: 0.9;
-  display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
-}
-.badge {
-  background: rgba(255,255,255,0.2);
-  padding: 2px 10px; border-radius: 20px;
-  font-size: 12px;
-}
-
-/* ── 統計按鈕（右上角）── */
-.stats-btn {
-  position: absolute; top: 16px; right: 16px;
-  background: rgba(255,255,255,0.25);
-  color: white; border: 2px solid rgba(255,255,255,0.5);
-  padding: 6px 14px; border-radius: 20px;
-  font-size: 13px; font-weight: 700; cursor: pointer;
-  backdrop-filter: blur(4px);
-  transition: all .2s;
-}
-.stats-btn:hover { background: rgba(255,255,255,0.4); }
-
-/* ── 容器 ── */
-.container { max-width: 600px; margin: 0 auto; padding: 20px 16px 80px; }
-
-/* ── 卡片 ── */
-.card {
-  background: var(--card);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 20px;
-  margin-bottom: 16px;
-  border: 1px solid var(--border);
-}
-.card-title {
-  font-size: 16px; font-weight: 700;
-  margin-bottom: 14px;
-  display: flex; align-items: center; gap: 8px;
-}
-.card-title .icon {
-  width: 32px; height: 32px; border-radius: 8px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 16px;
-}
-.icon-red    { background: #FEE2E2; }
-.icon-orange { background: #FEF3C7; }
-.icon-green  { background: #DCFCE7; }
-.icon-blue   { background: #DBEAFE; }
-
-/* ── 輸入框 ── */
-.input-group { margin-bottom: 14px; }
-.input-group label { font-size: 13px; font-weight: 600; color: var(--muted); margin-bottom: 6px; display: block; }
-.input-group input {
-  width: 100%; padding: 12px 14px;
-  border: 2px solid var(--border); border-radius: 10px;
-  font-size: 15px; font-family: inherit;
-  transition: border-color .2s;
-  background: #FFFAF7;
-}
-.input-group input:focus { outline: none; border-color: var(--orange); }
-
-/* ── 選項按鈕群 ── */
-.btn-group { display: flex; gap: 8px; flex-wrap: wrap; }
-.opt-btn {
-  padding: 9px 16px; border-radius: 10px;
-  border: 2px solid var(--border);
-  background: white; font-size: 14px; font-weight: 500;
-  cursor: pointer; transition: all .15s; font-family: inherit;
-  color: var(--text);
-}
-.opt-btn:hover { border-color: var(--orange); background: #FFF7ED; }
-.opt-btn.selected {
-  background: var(--orange); border-color: var(--orange);
-  color: white; font-weight: 700;
-}
-.opt-btn.drink-yes.selected { background: var(--red); border-color: var(--red); }
-.opt-btn.drink-no.selected  { background: #64748B; border-color: #64748B; }
-
-/* ── 餐廳卡片 ── */
-.restaurant-list { display: flex; flex-direction: column; gap: 10px; }
-.rest-card {
-  border: 2px solid var(--border); border-radius: 12px;
-  padding: 14px; cursor: pointer;
-  transition: all .2s; background: white;
-  display: flex; align-items: center; gap: 12px;
-}
-.rest-card:hover { border-color: var(--orange); background: #FFFAF7; transform: translateY(-1px); }
-.rest-card.selected { border-color: var(--red); background: #FFF5F5; box-shadow: 0 0 0 3px rgba(232,64,64,0.15); }
-.rest-emoji { font-size: 28px; width: 44px; text-align: center; flex-shrink: 0; }
-.rest-info { flex: 1; }
-.rest-name { font-size: 15px; font-weight: 700; }
-.rest-meta { font-size: 12px; color: var(--muted); margin-top: 3px; display: flex; gap: 8px; flex-wrap: wrap; }
-.rest-meta a { color: var(--orange); text-decoration: none; }
-.rest-meta a:hover { text-decoration: underline; }
-.stars { color: #F59E0B; }
-.rest-check { font-size: 22px; opacity: 0; transition: opacity .2s; }
-.rest-card.selected .rest-check { opacity: 1; }
-
-/* ── 菜色選擇 ── */
-.dish-grid {
-  display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;
-}
-@media (min-width: 400px) {
-  .dish-grid { grid-template-columns: repeat(3, 1fr); }
-}
-.dish-btn {
-  padding: 9px 8px; border-radius: 10px;
-  border: 2px solid var(--border);
-  background: white; font-size: 13px; font-weight: 500;
-  cursor: pointer; transition: all .15s; font-family: inherit;
-  color: var(--text); text-align: center; line-height: 1.3;
-}
-.dish-btn:hover { border-color: var(--green); background: #F0FDF4; }
-.dish-btn.selected {
-  background: var(--green); border-color: var(--green);
-  color: white; font-weight: 700;
-}
-.dish-hint { font-size: 12px; color: var(--muted); margin-bottom: 10px; }
-
-/* ── 日期選擇 ── */
-.date-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-.date-btn {
-  padding: 12px 8px; border-radius: 10px;
-  border: 2px solid var(--border);
-  background: white; font-size: 13px; font-weight: 600;
-  cursor: pointer; transition: all .15s; font-family: inherit;
-  color: var(--text); text-align: center;
-}
-.date-btn:hover { border-color: var(--green); background: #F0FDF4; }
-.date-btn.selected {
-  background: var(--green); border-color: var(--green); color: white;
-}
-.date-btn.disabled {
-  background: #F3F4F6; border-color: #E5E7EB;
-  color: #9CA3AF; cursor: not-allowed;
-}
-
-/* ── 提交按鈕 ── */
-.submit-btn {
-  width: 100%; padding: 16px;
-  background: linear-gradient(135deg, var(--red), var(--orange));
-  color: white; border: none; border-radius: 12px;
-  font-size: 17px; font-weight: 900; font-family: inherit;
-  cursor: pointer; letter-spacing: 1px;
-  box-shadow: 0 4px 15px rgba(232,64,64,0.4);
-  transition: all .2s;
-}
-.submit-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(232,64,64,0.5); }
-.submit-btn:active { transform: translateY(0); }
-.submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
-
-/* ── Toast / 提示 ── */
-.toast {
-  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px);
-  background: #1A1A1A; color: white;
-  padding: 12px 24px; border-radius: 24px;
-  font-size: 14px; font-weight: 600;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
-  transition: transform .3s ease, opacity .3s;
-  opacity: 0; z-index: 999; white-space: nowrap;
-}
-.toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
-.toast.success { background: var(--green); }
-.toast.error   { background: var(--red); }
-
-/* ── 已投票提示橫幅 ── */
-.voted-banner {
-  background: #FEF3C7; border: 2px solid var(--yellow);
-  border-radius: 12px; padding: 12px 16px;
-  margin-bottom: 16px; font-size: 14px; font-weight: 600;
-  display: flex; align-items: center; gap: 8px;
-}
-.edit-btn {
-  margin-left: auto; background: var(--orange); color: white;
-  border: none; padding: 6px 14px; border-radius: 8px;
-  font-size: 13px; font-weight: 700; cursor: pointer; font-family: inherit;
-}
-
-/* ── 統計頁 ── */
-.page { display: none; }
-.page.active { display: block; }
-
-.stats-section { margin-bottom: 20px; }
-.stats-section h3 { font-size: 15px; font-weight: 700; margin-bottom: 12px; color: var(--muted); }
-
-.bar-item { margin-bottom: 10px; }
-.bar-label { font-size: 14px; font-weight: 600; margin-bottom: 4px; display: flex; justify-content: space-between; }
-.bar-track { height: 10px; background: #F3F4F6; border-radius: 5px; overflow: hidden; }
-.bar-fill { height: 100%; background: linear-gradient(90deg, var(--red), var(--orange)); border-radius: 5px; transition: width 0.8s ease; }
-.bar-fill.green { background: linear-gradient(90deg, #16A34A, var(--green)); }
-
-.top-restaurant {
-  background: linear-gradient(135deg, #FFF7ED, #FEF3C7);
-  border: 2px solid var(--orange); border-radius: 12px;
-  padding: 16px; text-align: center; margin-bottom: 16px;
-}
-.top-restaurant .crown { font-size: 32px; }
-.top-restaurant .name { font-size: 20px; font-weight: 900; margin: 4px 0; }
-.top-restaurant .votes { font-size: 14px; color: var(--muted); }
-
-.common-dates {
-  background: #F0FDF4; border: 2px solid var(--green);
-  border-radius: 12px; padding: 14px;
-}
-.common-dates h4 { font-size: 14px; font-weight: 700; color: #16A34A; margin-bottom: 8px; }
-.date-chips { display: flex; gap: 6px; flex-wrap: wrap; }
-.date-chip {
-  background: var(--green); color: white;
-  padding: 5px 12px; border-radius: 20px; font-size: 13px; font-weight: 700;
-}
-.no-common { color: var(--muted); font-size: 13px; }
-
-.dish-rank { display: flex; flex-direction: column; gap: 8px; }
-.dish-rank-item {
-  display: flex; align-items: center; gap: 10px;
-  padding: 8px 12px; background: #FFFAF7; border-radius: 8px;
-}
-.rank-no { font-size: 18px; font-weight: 900; width: 28px; text-align: center; }
-.rank-name { flex: 1; font-size: 14px; font-weight: 600; }
-.rank-count { font-size: 13px; color: var(--muted); font-weight: 600; }
-
-.back-btn {
-  width: 100%; padding: 14px;
-  background: white; border: 2px solid var(--border);
-  border-radius: 12px; font-size: 15px; font-weight: 700;
-  cursor: pointer; font-family: inherit; color: var(--text);
-  transition: all .2s; margin-top: 8px;
-}
-.back-btn:hover { border-color: var(--orange); color: var(--orange); }
-
-/* ── Loading ── */
-.loading { text-align: center; padding: 30px; color: var(--muted); }
-.spinner {
-  width: 32px; height: 32px; margin: 0 auto 12px;
-  border: 3px solid var(--border); border-top-color: var(--orange);
-  border-radius: 50%; animation: spin .8s linear infinite;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
-
-/* ── Success 畫面 ── */
-.success-screen { text-align: center; padding: 40px 20px; }
-.success-screen .big-icon { font-size: 72px; margin-bottom: 16px; }
-.success-screen h2 { font-size: 24px; font-weight: 900; margin-bottom: 8px; }
-.success-screen p { color: var(--muted); font-size: 15px; }
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+.banner{background:linear-gradient(135deg,var(--red) 0%,var(--orange) 100%);color:white;padding:24px 20px 20px;text-align:center;position:relative;overflow:hidden;}
+.banner::before{content:'🍜🥢🍺🎉🍗🦞🔥';position:absolute;top:-4px;left:0;right:0;font-size:28px;letter-spacing:4px;opacity:.15;}
+.banner h1{font-size:28px;font-weight:900;letter-spacing:2px;}
+.banner .subtitle{font-size:13px;margin-top:6px;opacity:.9;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.badge{background:rgba(255,255,255,.2);padding:2px 10px;border-radius:20px;font-size:12px;}
+.stats-btn{position:absolute;top:16px;right:16px;background:rgba(255,255,255,.25);color:white;border:2px solid rgba(255,255,255,.5);padding:6px 14px;border-radius:20px;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;}
+.stats-btn:hover{background:rgba(255,255,255,.4);}
+.container{max-width:600px;margin:0 auto;padding:20px 16px 80px;}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px;margin-bottom:16px;border:1px solid var(--border);animation:fadeIn .3s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.card-title{font-size:16px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.card-title .icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;}
+.icon-red{background:#FEE2E2;}.icon-orange{background:#FEF3C7;}.icon-green{background:#DCFCE7;}.icon-blue{background:#DBEAFE;}
+.input-group{margin-bottom:14px;}
+.input-group label{font-size:13px;font-weight:600;color:var(--muted);margin-bottom:6px;display:block;}
+.input-group input{width:100%;padding:12px 14px;border:2px solid var(--border);border-radius:10px;font-size:15px;font-family:inherit;transition:border-color .2s;background:#FFFAF7;}
+.input-group input:focus{outline:none;border-color:var(--orange);}
+.btn-group{display:flex;gap:8px;flex-wrap:wrap;}
+.opt-btn{padding:9px 16px;border-radius:10px;border:2px solid var(--border);background:white;font-size:14px;font-weight:500;cursor:pointer;transition:all .15s;font-family:inherit;color:var(--text);}
+.opt-btn:hover{border-color:var(--orange);background:#FFF7ED;}
+.opt-btn.selected{background:var(--orange);border-color:var(--orange);color:white;font-weight:700;}
+.opt-btn.drink-yes.selected{background:var(--red);border-color:var(--red);}
+.opt-btn.drink-no.selected{background:#64748B;border-color:#64748B;}
+.restaurant-list{display:flex;flex-direction:column;gap:10px;}
+.rest-card{border:2px solid var(--border);border-radius:12px;padding:14px;cursor:pointer;transition:all .2s;background:white;display:flex;align-items:center;gap:12px;}
+.rest-card:hover{border-color:var(--orange);background:#FFFAF7;transform:translateY(-1px);}
+.rest-card.selected{border-color:var(--red);background:#FFF5F5;box-shadow:0 0 0 3px rgba(232,64,64,.15);}
+.rest-emoji{font-size:28px;width:44px;text-align:center;flex-shrink:0;}
+.rest-info{flex:1;}
+.rest-name{font-size:15px;font-weight:700;}
+.rest-meta{font-size:12px;color:var(--muted);margin-top:3px;display:flex;gap:8px;flex-wrap:wrap;}
+.rest-meta a{color:var(--orange);text-decoration:none;}
+.rest-meta a:hover{text-decoration:underline;}
+.stars{color:#F59E0B;}
+.rest-check{font-size:22px;opacity:0;transition:opacity .2s;}
+.rest-card.selected .rest-check{opacity:1;}
+.other-dropdown{display:none;margin-top:10px;padding:10px;background:#FFF7ED;border-radius:10px;border:1px solid var(--border);}
+.other-dropdown.show{display:block;}
+.other-opt{display:block;width:100%;padding:10px 14px;margin-bottom:6px;border-radius:8px;border:2px solid var(--border);background:white;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;color:var(--text);text-align:left;transition:all .15s;}
+.other-opt:last-child{margin-bottom:0;}
+.other-opt:hover{background:#FEE2E2;border-color:var(--red);color:var(--red);}
+.dish-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;}
+@media(min-width:400px){.dish-grid{grid-template-columns:repeat(3,1fr);}}
+.dish-btn{padding:9px 8px;border-radius:10px;border:2px solid var(--border);background:white;font-size:13px;font-weight:500;cursor:pointer;transition:all .15s;font-family:inherit;color:var(--text);text-align:center;line-height:1.3;}
+.dish-btn:hover{border-color:var(--green);background:#F0FDF4;}
+.dish-btn.selected{background:var(--green);border-color:var(--green);color:white;font-weight:700;}
+.dish-hint{font-size:12px;color:var(--muted);margin-bottom:10px;}
+.date-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.date-btn{padding:12px 8px;border-radius:10px;border:2px solid var(--border);background:white;font-size:13px;font-weight:600;cursor:pointer;transition:all .15s;font-family:inherit;color:var(--text);text-align:center;}
+.date-btn:hover{border-color:var(--green);background:#F0FDF4;}
+.date-btn.selected{background:var(--green);border-color:var(--green);color:white;}
+.date-btn.disabled{background:#F3F4F6;border-color:#E5E7EB;color:#9CA3AF;cursor:not-allowed;}
+.submit-btn{width:100%;padding:16px;background:linear-gradient(135deg,var(--red),var(--orange));color:white;border:none;border-radius:12px;font-size:17px;font-weight:900;font-family:inherit;cursor:pointer;letter-spacing:1px;box-shadow:0 4px 15px rgba(232,64,64,.4);transition:all .2s;}
+.submit-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(232,64,64,.5);}
+.submit-btn:disabled{opacity:.6;cursor:not-allowed;transform:none;}
+.next-btn{width:100%;margin-top:12px;padding:12px;background:var(--orange);color:white;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .2s;}
+.next-btn:hover{background:#EA6A00;}
+.step-hidden{display:none;}
+.voted-banner{background:#FEF3C7;border:2px solid var(--yellow);border-radius:12px;padding:12px 16px;margin-bottom:16px;font-size:14px;font-weight:600;display:flex;align-items:center;gap:8px;}
+.edit-btn{margin-left:auto;background:var(--orange);color:white;border:none;padding:6px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:#1A1A1A;color:white;padding:12px 24px;border-radius:24px;font-size:14px;font-weight:600;box-shadow:0 8px 30px rgba(0,0,0,.3);transition:transform .3s ease,opacity .3s;opacity:0;z-index:999;white-space:nowrap;}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1;}
+.toast.success{background:var(--green);}
+.toast.error{background:var(--red);}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:1000;align-items:center;justify-content:center;padding:20px;}
+.modal-overlay.show{display:flex;}
+.modal-box{background:white;border-radius:20px;padding:28px 24px;max-width:360px;width:100%;text-align:center;animation:popIn .3s cubic-bezier(.34,1.56,.64,1);}
+@keyframes popIn{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:scale(1)}}
+.modal-box .big-icon{font-size:56px;margin-bottom:12px;}
+.modal-box h2{font-size:20px;font-weight:900;margin-bottom:6px;}
+.modal-box p{font-size:14px;color:var(--muted);margin-bottom:20px;}
+.sponsor-opts{display:flex;flex-direction:column;gap:8px;}
+.sponsor-btn{padding:12px 16px;border-radius:12px;border:2px solid var(--border);background:white;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .15s;text-align:left;}
+.sponsor-btn:hover{transform:translateX(4px);}
+.sponsor-btn.gold{border-color:#F59E0B;color:#92400E;background:#FFFBEB;}
+.sponsor-btn.stock{border-color:#3B82F6;color:#1E3A8A;background:#EFF6FF;}
+.sponsor-btn.pocket{border-color:#EC4899;color:#831843;background:#FDF2F8;}
+.sponsor-btn.broke{border-color:#EF4444;color:#7F1D1D;background:#FEF2F2;}
+.page{display:none;}
+.page.active{display:block;}
+.stats-section{margin-bottom:20px;}
+.stats-section h3{font-size:15px;font-weight:700;margin-bottom:12px;color:var(--muted);}
+.bar-item{margin-bottom:10px;}
+.bar-label{font-size:14px;font-weight:600;margin-bottom:4px;display:flex;justify-content:space-between;}
+.bar-track{height:10px;background:#F3F4F6;border-radius:5px;overflow:hidden;}
+.bar-fill{height:100%;background:linear-gradient(90deg,var(--red),var(--orange));border-radius:5px;transition:width .8s ease;}
+.bar-fill.green{background:linear-gradient(90deg,#16A34A,var(--green));}
+.top-restaurant{background:linear-gradient(135deg,#FFF7ED,#FEF3C7);border:2px solid var(--orange);border-radius:12px;padding:16px;text-align:center;margin-bottom:16px;}
+.top-restaurant .crown{font-size:32px;}
+.top-restaurant .name{font-size:20px;font-weight:900;margin:4px 0;}
+.top-restaurant .votes{font-size:14px;color:var(--muted);}
+.common-dates{background:#F0FDF4;border:2px solid var(--green);border-radius:12px;padding:14px;}
+.common-dates h4{font-size:14px;font-weight:700;color:#16A34A;margin-bottom:8px;}
+.date-chips{display:flex;gap:6px;flex-wrap:wrap;}
+.date-chip{background:var(--green);color:white;padding:5px 12px;border-radius:20px;font-size:13px;font-weight:700;}
+.no-common{color:var(--muted);font-size:13px;}
+.dish-rank{display:flex;flex-direction:column;gap:8px;}
+.dish-rank-item{display:flex;align-items:center;gap:10px;padding:8px 12px;background:#FFFAF7;border-radius:8px;}
+.rank-no{font-size:18px;font-weight:900;width:28px;text-align:center;}
+.rank-name{flex:1;font-size:14px;font-weight:600;}
+.rank-count{font-size:13px;color:var(--muted);font-weight:600;}
+.back-btn{width:100%;padding:14px;background:white;border:2px solid var(--border);border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;color:var(--text);transition:all .2s;margin-top:8px;}
+.back-btn:hover{border-color:var(--orange);color:var(--orange);}
+.loading{text-align:center;padding:30px;color:var(--muted);}
+.spinner{width:32px;height:32px;margin:0 auto 12px;border:3px solid var(--border);border-top-color:var(--orange);border-radius:50%;animation:spin .8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
 
-<!-- ====== BANNER ====== -->
 <div class="banner">
   <button class="stats-btn" onclick="showStats()">📊 查看統計</button>
   <h1>🍽️ 聚餐好選擇</h1>
@@ -305,22 +133,17 @@ body {
   </div>
 </div>
 
-<!-- ====== 投票頁 ====== -->
 <div id="page-vote" class="page active">
 <div class="container">
 
-  <!-- 已投票提示 -->
   <div id="voted-banner" class="voted-banner" style="display:none">
     ✅ 你已經投過票囉！
     <button class="edit-btn" onclick="enableEdit()">✏️ 修改</button>
   </div>
 
-  <!-- STEP 1: 個人資料 -->
-  <div class="card">
-    <div class="card-title">
-      <div class="icon icon-red">👤</div>
-      基本資料
-    </div>
+  <!-- STEP 1 -->
+  <div class="card" id="step1">
+    <div class="card-title"><div class="icon icon-red">👤</div>基本資料</div>
     <div class="input-group">
       <label>姓名 / 綽號</label>
       <input type="text" id="name" placeholder="輸入你的名字或綽號" oninput="onNameInput()">
@@ -333,26 +156,22 @@ body {
         <button class="opt-btn" onclick="selectCompany(this,'路人甲')">🚶 路人甲/過去式</button>
       </div>
     </div>
+    <button class="next-btn" onclick="nextStep(1)">下一步 →</button>
   </div>
 
-  <!-- STEP 2: 喝酒 -->
-  <div class="card">
-    <div class="card-title">
-      <div class="icon icon-orange">🍺</div>
-      你喝酒嗎？
-    </div>
+  <!-- STEP 2 -->
+  <div class="card step-hidden" id="step2">
+    <div class="card-title"><div class="icon icon-orange">🍺</div>你喝酒嗎？</div>
     <div class="btn-group">
       <button class="opt-btn drink-yes" onclick="selectDrink(this,'是')">🍺 喝！當然喝！</button>
       <button class="opt-btn drink-no" onclick="selectDrink(this,'否')">🧃 我不喝</button>
     </div>
+    <button class="next-btn" onclick="nextStep(2)">下一步 →</button>
   </div>
 
-  <!-- STEP 3: 餐廳 -->
-  <div class="card">
-    <div class="card-title">
-      <div class="icon icon-red">🍜</div>
-      選一間餐廳
-    </div>
+  <!-- STEP 3 -->
+  <div class="card step-hidden" id="step3">
+    <div class="card-title"><div class="icon icon-red">🍜</div>選一間餐廳</div>
     <div class="restaurant-list">
 
       <div class="rest-card" onclick="selectRestaurant(this,'嚐嚐九九-中壢店')">
@@ -360,9 +179,8 @@ body {
         <div class="rest-info">
           <div class="rest-name">嚐嚐九九－中壢店</div>
           <div class="rest-meta">
-            <span class="stars">★★★★☆</span><span>4.3（4,259 評）</span>
-            <span>💰 $200-400</span>
-            <a href="https://maps.app.goo.gl/xsyeUPikycMGbtis9" target="_blank" onclick="e=>e.stopPropagation()">📍 地圖</a>
+            <span class="stars">★★★★☆</span><span>4.3（4,259 評）</span><span>💰 $200-400</span>
+            <a href="https://maps.app.goo.gl/xsyeUPikycMGbtis9" target="_blank" onclick="event.stopPropagation()">📍 地圖</a>
           </div>
         </div>
         <div class="rest-check">✅</div>
@@ -373,9 +191,8 @@ body {
         <div class="rest-info">
           <div class="rest-name">好漢莊甕子雞</div>
           <div class="rest-meta">
-            <span class="stars">★★★★☆</span><span>4.3（2,650 評）</span>
-            <span>💰 $400-600</span>
-            <a href="https://maps.app.goo.gl/tzHg5cXhRoEZ6GMk9" target="_blank" onclick="e=>e.stopPropagation()">📍 地圖</a>
+            <span class="stars">★★★★☆</span><span>4.3（2,650 評）</span><span>💰 $400-600</span>
+            <a href="https://maps.app.goo.gl/tzHg5cXhRoEZ6GMk9" target="_blank" onclick="event.stopPropagation()">📍 地圖</a>
           </div>
         </div>
         <div class="rest-check">✅</div>
@@ -386,9 +203,8 @@ body {
         <div class="rest-info">
           <div class="rest-name">火車頭海鮮</div>
           <div class="rest-meta">
-            <span class="stars">★★★★☆</span><span>3.9（3,302 評）</span>
-            <span>💰 $200-400</span>
-            <a href="https://maps.app.goo.gl/qP92JAUFGpLsh6jK7" target="_blank" onclick="e=>e.stopPropagation()">📍 地圖</a>
+            <span class="stars">★★★★☆</span><span>3.9（3,302 評）</span><span>💰 $200-400</span>
+            <a href="https://maps.app.goo.gl/qP92JAUFGpLsh6jK7" target="_blank" onclick="event.stopPropagation()">📍 地圖</a>
           </div>
         </div>
         <div class="rest-check">✅</div>
@@ -399,9 +215,8 @@ body {
         <div class="rest-info">
           <div class="rest-name">九鼎海鮮熱炒</div>
           <div class="rest-meta">
-            <span class="stars">★★★★☆</span><span>4.2（912 評）</span>
-            <span>💰 $400-400</span>
-            <a href="https://maps.app.goo.gl/zK1MDvZi5HMBY8vf8" target="_blank" onclick="e=>e.stopPropagation()">📍 地圖</a>
+            <span class="stars">★★★★☆</span><span>4.2（912 評）</span><span>💰 $400-400</span>
+            <a href="https://maps.app.goo.gl/zK1MDvZi5HMBY8vf8" target="_blank" onclick="event.stopPropagation()">📍 地圖</a>
           </div>
         </div>
         <div class="rest-check">✅</div>
@@ -412,37 +227,43 @@ body {
         <div class="rest-info">
           <div class="rest-name">阿來快炒</div>
           <div class="rest-meta">
-            <span class="stars">★★★★☆</span><span>4.2（849 評）</span>
-            <span>💰 $400-600</span>
-            <a href="https://maps.app.goo.gl/yWbexaNpRfyLAwM66" target="_blank" onclick="e=>e.stopPropagation()">📍 地圖</a>
+            <span class="stars">★★★★☆</span><span>4.2（849 評）</span><span>💰 $400-600</span>
+            <a href="https://maps.app.goo.gl/yWbexaNpRfyLAwM66" target="_blank" onclick="event.stopPropagation()">📍 地圖</a>
           </div>
         </div>
         <div class="rest-check">✅</div>
       </div>
 
-      <div class="rest-card" onclick="showFunnyMsg('suggest')">
-        <div class="rest-emoji">💡</div>
+      <div class="rest-card" id="other-card" onclick="toggleOtherDropdown()">
+        <div class="rest-emoji">💬</div>
         <div class="rest-info">
-          <div class="rest-name">有更好的建議？</div>
-          <div class="rest-meta"><span>點我看看...</span></div>
+          <div class="rest-name">其它</div>
+          <div class="rest-meta"><span>點我展開選項...</span></div>
         </div>
+        <div class="rest-check" id="other-check" style="opacity:0">✅</div>
+      </div>
+      <div class="other-dropdown" id="other-dropdown">
+        <button class="other-opt" onclick="selectOtherReason('實在太遠、下次再說')">😅 實在太遠、下次再說</button>
+        <button class="other-opt" onclick="selectOtherReason('嘴炮+1（要帶小孩）')">👶 嘴炮+1（要帶小孩）</button>
       </div>
 
     </div>
+    <button class="next-btn" onclick="nextStep(3)">下一步 →</button>
   </div>
 
-  <!-- STEP 4: 菜色 (動態顯示) -->
-  <div class="card" id="dish-card" style="display:none">
+  <!-- STEP 4 -->
+  <div class="card step-hidden" id="step4">
     <div class="card-title">
       <div class="icon icon-green">🍽️</div>
       最想吃什麼？<span style="font-size:12px;font-weight:400;color:var(--muted);margin-left:4px">（可複選）</span>
     </div>
-    <div class="dish-hint" id="dish-hint">選你最期待的菜，幫大家參考！</div>
+    <div class="dish-hint">選你最期待的菜，幫大家參考！</div>
     <div class="dish-grid" id="dish-grid"></div>
+    <button class="next-btn" onclick="nextStep(4)">下一步 →</button>
   </div>
 
-  <!-- STEP 5: 時間 -->
-  <div class="card">
+  <!-- STEP 5 -->
+  <div class="card step-hidden" id="step5">
     <div class="card-title">
       <div class="icon icon-blue">📅</div>
       你哪天可以？<span style="font-size:12px;font-weight:400;color:var(--muted);margin-left:4px">（可複選）</span>
@@ -456,472 +277,341 @@ body {
       <button class="date-btn" onclick="toggleDate(this,'5/21')">5/21<br><span style="font-size:11px">四</span></button>
       <button class="date-btn" onclick="toggleDate(this,'5/22')">5/22<br><span style="font-size:11px">五</span></button>
     </div>
+    <button class="submit-btn" id="submit-btn" style="margin-top:16px" onclick="submitVote()">🎉 送出投票</button>
   </div>
 
-  <!-- 送出 -->
-  <button class="submit-btn" id="submit-btn" onclick="submitVote()">🎉 送出投票</button>
-
 </div>
 </div>
 
-<!-- ====== 統計頁 ====== -->
+<!-- 統計頁 -->
 <div id="page-stats" class="page">
 <div class="container">
-
   <div class="card">
-    <div class="card-title">
-      <div class="icon icon-orange">📊</div>
-      即時投票統計
-    </div>
-    <div id="stats-content">
-      <div class="loading"><div class="spinner"></div>載入中...</div>
-    </div>
+    <div class="card-title"><div class="icon icon-orange">📊</div>即時投票統計</div>
+    <div id="stats-content"><div class="loading"><div class="spinner"></div>載入中...</div></div>
   </div>
-
   <button class="back-btn" onclick="showVote()">← 回去投票</button>
 </div>
 </div>
 
-<!-- Toast -->
+<!-- 贊助彈窗 -->
+<div class="modal-overlay" id="sponsor-modal">
+  <div class="modal-box">
+    <div class="big-icon">💸</div>
+    <h2>你願意贊助多少？</h2>
+    <p>上次你還欠一頓，這次機會來了！</p>
+    <div class="sponsor-opts">
+      <button class="sponsor-btn gold" onclick="selectSponsor('脖子上的黃金項鍊')">💛 脖子上的黃金項鍊</button>
+      <button class="sponsor-btn stock" onclick="selectSponsor('股票的10%')">📈 股票的 10%</button>
+      <button class="sponsor-btn pocket" onclick="selectSponsor('自己的私房錢')">💝 自己的私房錢</button>
+      <button class="sponsor-btn broke" onclick="selectSponsor('窮到要脫褲')">😭 窮到要脫褲</button>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
-// ============================================================
-//  設定區 — 部署後填入你的 GAS URL
-// ============================================================
 const GAS_URL = 'https://script.google.com/macros/s/AKfycbyU5N-nVRA2_6cdbTyed6EMvgtKs4vgmZax6bBK-RuHHNx8wP-ZyvKgUq-eSjIrNSl3tw/exec';
 
-// ============================================================
-//  菜色資料
-// ============================================================
 const DISHES = {
-  '嚐嚐九九-中壢店': [
-    '三杯燒雞丁','宮保雞丁','泰式椒麻雞','椒鹽龍珠',
-    '蒜蓉蒸鮑魚（6顆）','一品花雕雞','麻油松阪肉','酸白菜松板肉',
-    '蒜蓉蒸鮮蝦','薑燒海大蝦','清蒸鱸魚','泰式檸檬鱸魚',
-    '泰式拌海鮮','月亮海鮮餅','炒海瓜子','蜜汁排骨',
-    '糖醋排骨','金沙中卷','蜜汁中卷','蔥爆蛤蜊湯（小）'
-  ],
-  '好漢莊甕子雞': [
-    '黃金窯烤雞','泰式嘉炸雞','清蒸山泉鮮鱸魚','糖醋鮮鱸魚',
-    '紅燒鮮魚','蒜蓉蒸鮮蝦','薑燒海大蝦','清蒸鱸魚',
-    '泰式拌海鮮','月亮海鮮餅','炒海瓜子','鳳梨蝦球',
-    '三杯米血中卷','蜜汁中卷','金沙中卷','宮保雞丁',
-    '口水雞','滑蛋牛肉','鐵板牛肉','蔥爆蛤蜊湯（小）'
-  ],
-  '火車頭海鮮': [
-    '黃金窯烤雞','泰式嘉炸雞','清蒸山泉鮮鱸魚','糖醋鮮鱸魚',
-    '紅燒鮮魚','綜合生魚片','金沙軟絲','酥炸紅燻蟳',
-    '鐵板鮮蚵','五味冰卷','泰式拌海鮮','炒海瓜子',
-    '鹹酥鮮蝦','蒜蓉楊條蒸鮮蝦','XO醬爆蘿蔔糕','招牌腸旺賣',
-    '農家小炒','燉鍋松阪肉','麻香松阪肉','海鮮芋頭米粉鍋'
-  ],
-  '九鼎海鮮熱炒': [
-    '麻辣臭豆腐','川味豬腳','脆皮雞','鹽酥蟳',
-    '鹽酥龍珠','鹽酥蝦','脆皮肥腸','鹽酥斑甲',
-    '塔香蛤蜊','蔥爆牛肉','沙茶牛肉','爆炒雙脆',
-    '炒海瓜子','蒜蓉鮮蚵','炒青蔬','砂鍋魚頭',
-    '蔥爆山豬肉','椒鹽排骨','辣味噌魚湯','鮮蛤湯'
-  ],
-  '阿來快炒': [
-    '招牌脆皮雞','麻油雞佛','胡椒風螺活','麻油雞拼（超值）',
-    '泰式軟殼蟹','蔗味牛小排','泰式酸辣豬肉','客家小炒',
-    '蔥爆牛肉','沙茶牛肉','塔香蛤蜊','蒜泥鮮蚵',
-    '炒蛤蜊','月亮蝦餅','酥炸鮮蚵','鳳梨蝦球',
-    '霸王海鮮鍋','三杯雞腿','鮮蚵豆腐煲','砂鍋魚頭'
-  ]
+  '嚐嚐九九-中壢店': ['三杯燒雞丁','宮保雞丁','泰式椒麻雞','椒鹽龍珠','蒜蓉蒸鮑魚（6顆）','一品花雕雞','麻油松阪肉','酸白菜松板肉','蒜蓉蒸鮮蝦','薑燒海大蝦','清蒸鱸魚','泰式檸檬鱸魚','泰式拌海鮮','月亮海鮮餅','炒海瓜子','蜜汁排骨','糖醋排骨','金沙中卷','蜜汁中卷','蔥爆蛤蜊湯（小）','鹹蛋苦瓜','紹興醉蝦','$99超值限定','椒鹽魚下巴','豬肝炒韭菜','蒜炒空心菜'],
+  '好漢莊甕子雞': ['黃金窯烤雞','泰式嘉炸雞','清蒸山泉鮮鱸魚','糖醋鮮鱸魚','紅燒鮮魚','蒜蓉蒸鮮蝦','薑燒海大蝦','清蒸鱸魚','泰式拌海鮮','月亮海鮮餅','炒海瓜子','鳳梨蝦球','三杯米血中卷','蜜汁中卷','金沙中卷','宮保雞丁','口水雞','滑蛋牛肉','鐵板牛肉','蔥爆蛤蜊湯（小）','蜜汁排骨','酸菜白肉鍋','蔥爆山豬肉','椒麻牛肚','泰式檸檬蝦','招牌腸旺賣'],
+  '火車頭海鮮': ['黃金窯烤雞','泰式嘉炸雞','清蒸山泉鮮鱸魚','糖醋鮮鱸魚','紅燒鮮魚','綜合生魚片','金沙軟絲','酥炸紅燻蟳','鐵板鮮蚵','五味冰卷','泰式拌海鮮','炒海瓜子','鹹酥鮮蝦','蒜蓉楊條蒸鮮蝦','XO醬爆蘿蔔糕','招牌腸旺賣','農家小炒','燉鍋松阪肉','麻香松阪肉','海鮮芋頭米粉鍋','剁椒辣雞湯','越式明月蝦餅','鳳梨蝦球','蒜泥白肉','宮保雞丁','烤魚（時價）'],
+  '九鼎海鮮熱炒': ['麻辣臭豆腐','川味豬腳','脆皮雞','鹽酥蟳','鹽酥龍珠','鹽酥蝦','脆皮肥腸','鹽酥斑甲','塔香蛤蜊','蔥爆牛肉','沙茶牛肉','爆炒雙脆','炒海瓜子','蒜蓉鮮蚵','炒青蔬','砂鍋魚頭','蔥爆山豬肉','椒鹽排骨','辣味噌魚湯','鮮蛤湯','蒜炒空心菜','泰式酸辣蝦湯','豆酥鱈魚','客家小炒','宮保雞丁','三杯田雞'],
+  '阿來快炒': ['招牌脆皮雞','麻油雞佛','胡椒風螺活','麻油雞拼（超值）','泰式軟殼蟹','蔗味牛小排','泰式酸辣豬肉','客家小炒','蔥爆牛肉','沙茶牛肉','塔香蛤蜊','蒜泥鮮蚵','炒蛤蜊','月亮蝦餅','酥炸鮮蚵','鳳梨蝦球','霸王海鮮鍋','三杯雞腿','鮮蚵豆腐煲','砂鍋魚頭','椒鹽田雞','紅糟鰻','沙茶羊肉','鹽酥蝦','茄汁蝦仁','大黑板手寫菜（當日限定）']
 };
 
-// ============================================================
-//  狀態
-// ============================================================
-let state = {
-  name: '',
-  company: '',
-  drink: '',
-  restaurant: '',
-  dishes: [],
-  dates: [],
-  isEditing: false,
-  voterId: ''
-};
+let state = { name:'', company:'', drink:'', restaurant:'', dishes:[], dates:[], isEditing:false, voterId:'', otherReason:'' };
 
-// ── voter ID（姓名+公司組合，localStorage 緩存）──
 function getVoterId(name, company) {
   return btoa(encodeURIComponent(`${name}|${company}`)).replace(/=/g,'');
 }
 
-// ============================================================
-//  頁面初始化
-// ============================================================
 window.addEventListener('DOMContentLoaded', () => {
-  // 嘗試從 localStorage 讀取上次資訊
-  const savedName    = localStorage.getItem('jc_name') || '';
-  const savedCompany = localStorage.getItem('jc_company') || '';
-
-  if (savedName) {
-    document.getElementById('name').value = savedName;
-    state.name = savedName;
-  }
-  if (savedCompany) {
-    state.company = savedCompany;
-    document.querySelectorAll('#company-group .opt-btn').forEach(btn => {
-      if (btn.textContent.includes(savedCompany) || savedCompany.includes(btn.dataset?.company)) {
-        // 不自動選，讓使用者確認
-      }
-    });
-  }
+  const savedName = localStorage.getItem('jc_name') || '';
+  if (savedName) { document.getElementById('name').value = savedName; state.name = savedName; }
   checkExistingVote();
 });
 
-function onNameInput() {
-  state.name = document.getElementById('name').value.trim();
+function onNameInput() { state.name = document.getElementById('name').value.trim(); }
+
+// 逐步顯示
+function nextStep(step) {
+  if (step === 1) {
+    if (!document.getElementById('name').value.trim()) return showToast('❗ 請輸入姓名！','error');
+    if (!state.company) return showToast('❗ 請選擇公司！','error');
+    showStep('step2');
+  } else if (step === 2) {
+    if (!state.drink) return showToast('❗ 請選擇是否喝酒！','error');
+    showStep('step3');
+  } else if (step === 3) {
+    if (!state.restaurant) return showToast('❗ 請選擇一間餐廳！','error');
+    if (DISHES[state.restaurant]) { renderDishes(state.restaurant); showStep('step4'); }
+    else showStep('step5');
+  } else if (step === 4) {
+    showStep('step5');
+  }
+  setTimeout(() => {
+    const next = document.getElementById(`step${step+1}`);
+    if (next) next.scrollIntoView({behavior:'smooth', block:'start'});
+  }, 100);
 }
 
-function checkExistingVote() {
-  const savedName    = localStorage.getItem('jc_name') || '';
-  const savedCompany = localStorage.getItem('jc_company') || '';
-  if (!savedName || !savedCompany) return;
-
-  const voterId = getVoterId(savedName, savedCompany);
-  state.voterId = voterId;
-
-  jsonp(`${GAS_URL}?action=checkVoter&voter_id=${encodeURIComponent(voterId)}`, (res) => {
-    if (res && res.voted) {
-      showVotedBanner(savedName);
-      loadExistingVote(voterId);
-    }
-  });
+function showStep(id) {
+  const el = document.getElementById(id);
+  if (el) el.classList.remove('step-hidden');
 }
 
-function showVotedBanner(name) {
-  const banner = document.getElementById('voted-banner');
-  banner.innerHTML = `✅ <strong>${name}</strong>，你已投票！<button class="edit-btn" onclick="enableEdit()">✏️ 修改投票</button>`;
-  banner.style.display = 'flex';
-  disableForm(true);
+// 其它
+function toggleOtherDropdown() {
+  document.getElementById('other-dropdown').classList.toggle('show');
+}
+function selectOtherReason(reason) {
+  document.querySelectorAll('.rest-card').forEach(c => c.classList.remove('selected'));
+  document.getElementById('other-card').classList.add('selected');
+  document.getElementById('other-check').style.opacity = '1';
+  document.getElementById('other-dropdown').classList.remove('show');
+  state.restaurant = '其它';
+  state.otherReason = reason;
+  showToast(`已選：${reason}`, '');
 }
 
-function disableForm(val) {
-  document.getElementById('submit-btn').disabled = val;
-  if (val) document.getElementById('submit-btn').textContent = '✅ 已投票（點修改按鈕可修改）';
-}
-
-function enableEdit() {
-  state.isEditing = true;
-  document.getElementById('voted-banner').style.display = 'none';
-  disableForm(false);
-  document.getElementById('submit-btn').textContent = '💾 確認修改';
-  showToast('✏️ 修改模式，改完再按送出！', 'success');
-}
-
-function loadExistingVote(voterId) {
-  jsonp(`${GAS_URL}?action=getVote&voter_id=${encodeURIComponent(voterId)}`, (res) => {
-    if (!res || res.status !== 'ok') return;
-    const d = res.data;
-
-    // 填入名字
-    document.getElementById('name').value = d.name;
-    state.name = d.name;
-
-    // 公司
-    state.company = d.company;
-    document.querySelectorAll('#company-group .opt-btn').forEach(btn => {
-      if (btn.textContent.includes(d.company) || d.company.includes('路人') && btn.textContent.includes('路人')) {
-        btn.classList.add('selected');
-      }
-    });
-
-    // 喝酒
-    state.drink = d.drink;
-    document.querySelectorAll('.opt-btn.drink-yes, .opt-btn.drink-no').forEach(btn => {
-      if ((d.drink === '是' && btn.classList.contains('drink-yes')) ||
-          (d.drink === '否' && btn.classList.contains('drink-no'))) {
-        btn.classList.add('selected');
-      }
-    });
-
-    // 餐廳
-    state.restaurant = d.restaurant;
-    document.querySelectorAll('.rest-card').forEach(card => {
-      if (card.onclick.toString().includes(d.restaurant) ||
-          card.querySelector('.rest-name')?.textContent === d.restaurant) {
-        card.classList.add('selected');
-        renderDishes(d.restaurant);
-      }
-    });
-
-    // 菜色
-    state.dishes = d.dishes || [];
-    setTimeout(() => {
-      document.querySelectorAll('.dish-btn').forEach(btn => {
-        if (state.dishes.includes(btn.textContent)) btn.classList.add('selected');
-      });
-    }, 200);
-
-    // 日期
-    state.dates = d.dates || [];
-    document.querySelectorAll('.date-btn:not(.disabled)').forEach(btn => {
-      const dateKey = btn.textContent.trim().replace(/\n.*/, '');
-      if (state.dates.includes(dateKey)) btn.classList.add('selected');
-    });
-  });
-}
-
-// ============================================================
-//  互動函式
-// ============================================================
 function selectCompany(btn, company) {
   document.querySelectorAll('#company-group .opt-btn').forEach(b => b.classList.remove('selected'));
   btn.classList.add('selected');
   state.company = company;
   localStorage.setItem('jc_company', company);
 }
-
 function selectDrink(btn, val) {
   document.querySelectorAll('.opt-btn.drink-yes, .opt-btn.drink-no').forEach(b => b.classList.remove('selected'));
   btn.classList.add('selected');
   state.drink = val;
 }
-
 function selectRestaurant(card, name) {
   document.querySelectorAll('.rest-card').forEach(c => c.classList.remove('selected'));
+  document.getElementById('other-check').style.opacity = '0';
   card.classList.add('selected');
   state.restaurant = name;
+  state.otherReason = '';
   state.dishes = [];
-  renderDishes(name);
+  document.getElementById('other-dropdown').classList.remove('show');
 }
-
 function renderDishes(restaurant) {
-  const dishes = DISHES[restaurant] || [];
-  const grid = document.getElementById('dish-grid');
-  const card = document.getElementById('dish-card');
-  grid.innerHTML = dishes.map(d =>
-    `<button class="dish-btn" onclick="toggleDish(this,'${d.replace(/'/g,"\\'")}'">${d}</button>`
+  document.getElementById('dish-grid').innerHTML = (DISHES[restaurant]||[]).map(d =>
+    `<button class="dish-btn" onclick="toggleDish(this,'${d.replace(/'/g,"\\'")}')">${d}</button>`
   ).join('');
-  card.style.display = 'block';
 }
-
 function toggleDish(btn, dish) {
   btn.classList.toggle('selected');
-  if (btn.classList.contains('selected')) {
-    if (!state.dishes.includes(dish)) state.dishes.push(dish);
-  } else {
-    state.dishes = state.dishes.filter(d => d !== dish);
-  }
+  if (btn.classList.contains('selected')) { if (!state.dishes.includes(dish)) state.dishes.push(dish); }
+  else state.dishes = state.dishes.filter(d => d !== dish);
 }
-
 function toggleDate(btn, date) {
   btn.classList.toggle('selected');
-  if (btn.classList.contains('selected')) {
-    if (!state.dates.includes(date)) state.dates.push(date);
-  } else {
-    state.dates = state.dates.filter(d => d !== date);
-  }
+  if (btn.classList.contains('selected')) { if (!state.dates.includes(date)) state.dates.push(date); }
+  else state.dates = state.dates.filter(d => d !== date);
 }
-
 function showFunnyMsg(type) {
-  if (type === 'holiday') {
-    showToast('🏖️ 勞動節放假哦！要去你自己去！', 'error');
-  } else if (type === 'suggest') {
-    showToast('💬 下次再說！', '');
-  }
+  if (type === 'holiday') showToast('🏖️ 勞動節放假哦！要去你自己去！','error');
 }
 
-// ============================================================
-//  送出投票
-// ============================================================
+// 送出
 function submitVote() {
   const name = document.getElementById('name').value.trim();
-  if (!name)            return showToast('❗ 請輸入姓名！', 'error');
-  if (!state.company)   return showToast('❗ 請選擇公司！', 'error');
-  if (!state.drink)     return showToast('❗ 請選擇是否喝酒！', 'error');
-  if (!state.restaurant) return showToast('❗ 請選擇一間餐廳！', 'error');
-  if (state.dates.length === 0) return showToast('❗ 請至少選一個可聚餐日期！', 'error');
-
+  if (!name)             return showToast('❗ 請輸入姓名！','error');
+  if (!state.company)    return showToast('❗ 請選擇公司！','error');
+  if (!state.drink)      return showToast('❗ 請選擇是否喝酒！','error');
+  if (!state.restaurant) return showToast('❗ 請選擇一間餐廳！','error');
+  if (state.dates.length === 0) return showToast('❗ 請至少選一個可聚餐日期！','error');
   state.name = name;
   localStorage.setItem('jc_name', name);
   localStorage.setItem('jc_company', state.company);
+  document.getElementById('sponsor-modal').classList.add('show');
+}
 
-  const voterId = getVoterId(name, state.company);
+function selectSponsor(choice) {
+  document.getElementById('sponsor-modal').classList.remove('show');
+  if (choice === '窮到要脫褲') {
+    showToast('😭 窮到要脫褲！重新填一次吧！','error');
+    setTimeout(resetForm, 1500);
+    return;
+  }
+  showToast(`💸 ${choice}，感謝你的慷慨！`, 'success');
+  doSubmit(choice);
+}
+
+function doSubmit(sponsor) {
+  const voterId = getVoterId(state.name, state.company);
   state.voterId = voterId;
-
   const payload = {
     action: state.isEditing ? 'updateVote' : 'submitVote',
-    voter_id:   voterId,
-    name:       state.name,
-    company:    state.company,
-    drink:      state.drink,
-    restaurant: state.restaurant,
-    dishes:     state.dishes,
-    dates:      state.dates
+    voter_id: voterId, name: state.name, company: state.company,
+    drink: state.drink,
+    restaurant: state.restaurant + (state.otherReason ? `（${state.otherReason}）` : ''),
+    dishes: state.dishes, dates: state.dates, sponsor: sponsor
   };
-
   const btn = document.getElementById('submit-btn');
-  btn.disabled = true;
-  btn.textContent = '⏳ 送出中...';
-
-  fetch(GAS_URL, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
-  }).then(() => {
-    showToast(state.isEditing ? '✅ 修改成功！' : '🎉 投票成功！謝謝參與！', 'success');
-    state.isEditing = false;
-    disableForm(true);
+  btn.disabled = true; btn.textContent = '⏳ 送出中...';
+  fetch(GAS_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) })
+  .then(() => {
+    state.isEditing = false; disableForm(true);
     document.getElementById('voted-banner').innerHTML =
       `✅ <strong>${state.name}</strong>，你已投票！<button class="edit-btn" onclick="enableEdit()">✏️ 修改投票</button>`;
     document.getElementById('voted-banner').style.display = 'flex';
     btn.textContent = '✅ 已投票（點修改按鈕可修改）';
   }).catch(() => {
-    showToast('❌ 送出失敗，請再試一次', 'error');
+    showToast('❌ 送出失敗，請再試一次','error');
     btn.disabled = false;
     btn.textContent = state.isEditing ? '💾 確認修改' : '🎉 送出投票';
   });
 }
 
-// ============================================================
-//  統計頁
-// ============================================================
+function resetForm() {
+  state = { name:'', company:'', drink:'', restaurant:'', dishes:[], dates:[], isEditing:false, voterId:'', otherReason:'' };
+  document.getElementById('name').value = '';
+  document.querySelectorAll('.opt-btn.selected,.rest-card.selected,.dish-btn.selected,.date-btn.selected').forEach(el => el.classList.remove('selected'));
+  document.getElementById('other-check').style.opacity = '0';
+  ['step2','step3','step4','step5'].forEach(id => document.getElementById(id).classList.add('step-hidden'));
+  document.getElementById('submit-btn').disabled = false;
+  document.getElementById('submit-btn').textContent = '🎉 送出投票';
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function checkExistingVote() {
+  const savedName = localStorage.getItem('jc_name') || '';
+  const savedCompany = localStorage.getItem('jc_company') || '';
+  if (!savedName || !savedCompany) return;
+  const voterId = getVoterId(savedName, savedCompany);
+  state.voterId = voterId;
+  jsonp(`${GAS_URL}?action=checkVoter&voter_id=${encodeURIComponent(voterId)}`, (res) => {
+    if (res && res.voted) { showVotedBanner(savedName); loadExistingVote(voterId); }
+  });
+}
+function showVotedBanner(name) {
+  const banner = document.getElementById('voted-banner');
+  banner.innerHTML = `✅ <strong>${name}</strong>，你已投票！<button class="edit-btn" onclick="enableEdit()">✏️ 修改投票</button>`;
+  banner.style.display = 'flex';
+  disableForm(true);
+}
+function disableForm(val) {
+  document.getElementById('submit-btn').disabled = val;
+  if (val) document.getElementById('submit-btn').textContent = '✅ 已投票（點修改按鈕可修改）';
+}
+function enableEdit() {
+  state.isEditing = true;
+  document.getElementById('voted-banner').style.display = 'none';
+  ['step2','step3','step4','step5'].forEach(id => showStep(id));
+  disableForm(false);
+  document.getElementById('submit-btn').textContent = '💾 確認修改';
+  showToast('✏️ 修改模式，改完再按送出！','success');
+}
+function loadExistingVote(voterId) {
+  jsonp(`${GAS_URL}?action=getVote&voter_id=${encodeURIComponent(voterId)}`, (res) => {
+    if (!res || res.status !== 'ok') return;
+    const d = res.data;
+    document.getElementById('name').value = d.name; state.name = d.name;
+    state.company = d.company;
+    document.querySelectorAll('#company-group .opt-btn').forEach(btn => {
+      if (btn.textContent.includes(d.company)||(d.company.includes('路人')&&btn.textContent.includes('路人'))) btn.classList.add('selected');
+    });
+    state.drink = d.drink;
+    document.querySelectorAll('.opt-btn.drink-yes,.opt-btn.drink-no').forEach(btn => {
+      if ((d.drink==='是'&&btn.classList.contains('drink-yes'))||(d.drink==='否'&&btn.classList.contains('drink-no'))) btn.classList.add('selected');
+    });
+    state.restaurant = d.restaurant;
+    document.querySelectorAll('.rest-card').forEach(card => {
+      if (card.querySelector('.rest-name')?.textContent.includes(d.restaurant.split('（')[0])) {
+        card.classList.add('selected'); renderDishes(d.restaurant.split('（')[0]);
+      }
+    });
+    state.dishes = d.dishes||[];
+    setTimeout(() => {
+      document.querySelectorAll('.dish-btn').forEach(btn => {
+        if (state.dishes.includes(btn.textContent)) btn.classList.add('selected');
+      });
+    }, 200);
+    state.dates = d.dates||[];
+    document.querySelectorAll('.date-btn:not(.disabled)').forEach(btn => {
+      if (state.dates.includes(btn.textContent.trim().replace(/\n.*/,''))) btn.classList.add('selected');
+    });
+  });
+}
+
 function showStats() {
   document.getElementById('page-vote').classList.remove('active');
   document.getElementById('page-stats').classList.add('active');
-  window.scrollTo(0,0);
-  loadStats();
+  window.scrollTo(0,0); loadStats();
 }
-
 function showVote() {
   document.getElementById('page-stats').classList.remove('active');
   document.getElementById('page-vote').classList.add('active');
   window.scrollTo(0,0);
 }
-
 function loadStats() {
-  document.getElementById('stats-content').innerHTML =
-    '<div class="loading"><div class="spinner"></div>載入統計中...</div>';
-
+  document.getElementById('stats-content').innerHTML = '<div class="loading"><div class="spinner"></div>載入統計中...</div>';
   jsonp(`${GAS_URL}?action=getStats`, (res) => {
-    if (!res || res.status !== 'ok') {
-      document.getElementById('stats-content').innerHTML = '<p style="color:var(--muted);text-align:center;padding:20px">統計載入失敗，請稍後再試</p>';
-      return;
-    }
+    if (!res || res.status !== 'ok') { document.getElementById('stats-content').innerHTML = '<p style="color:var(--muted);text-align:center;padding:20px">統計載入失敗</p>'; return; }
     renderStats(res);
   });
 }
-
 function renderStats(res) {
-  const RESTAURANT_INFO = {
-    '嚐嚐九九-中壢店': { emoji:'🥘', stars:'4.3', url:'https://maps.app.goo.gl/xsyeUPikycMGbtis9', cost:'$200-400' },
-    '好漢莊甕子雞':     { emoji:'🍗', stars:'4.3', url:'https://maps.app.goo.gl/tzHg5cXhRoEZ6GMk9', cost:'$400-600' },
-    '火車頭海鮮':       { emoji:'🦞', stars:'3.9', url:'https://maps.app.goo.gl/qP92JAUFGpLsh6jK7', cost:'$200-400' },
-    '九鼎海鮮熱炒':     { emoji:'🔥', stars:'4.2', url:'https://maps.app.goo.gl/zK1MDvZi5HMBY8vf8', cost:'$400-400' },
-    '阿來快炒':         { emoji:'🥬', stars:'4.2', url:'https://maps.app.goo.gl/yWbexaNpRfyLAwM66', cost:'$400-600' }
+  const INFO = {
+    '嚐嚐九九-中壢店':{emoji:'🥘',stars:'4.3',url:'https://maps.app.goo.gl/xsyeUPikycMGbtis9',cost:'$200-400'},
+    '好漢莊甕子雞':{emoji:'🍗',stars:'4.3',url:'https://maps.app.goo.gl/tzHg5cXhRoEZ6GMk9',cost:'$400-600'},
+    '火車頭海鮮':{emoji:'🦞',stars:'3.9',url:'https://maps.app.goo.gl/qP92JAUFGpLsh6jK7',cost:'$200-400'},
+    '九鼎海鮮熱炒':{emoji:'🔥',stars:'4.2',url:'https://maps.app.goo.gl/zK1MDvZi5HMBY8vf8',cost:'$400-400'},
+    '阿來快炒':{emoji:'🥬',stars:'4.2',url:'https://maps.app.goo.gl/yWbexaNpRfyLAwM66',cost:'$400-600'}
   };
-
   const total = res.totalVoters;
-  if (total === 0) {
-    document.getElementById('stats-content').innerHTML =
-      '<div style="text-align:center;padding:30px;color:var(--muted)">😴 還沒有人投票，快去揪人！</div>';
-    return;
-  }
-
-  // 餐廳票數排序
-  const restEntries = Object.entries(res.restaurantCount || {}).sort((a,b) => b[1]-a[1]);
+  if (total === 0) { document.getElementById('stats-content').innerHTML = '<div style="text-align:center;padding:30px;color:var(--muted)">😴 還沒有人投票，快去揪人！</div>'; return; }
+  const restEntries = Object.entries(res.restaurantCount||{}).sort((a,b)=>b[1]-a[1]);
+  const dateEntries = Object.entries(res.dateCount||{}).sort((a,b)=>b[1]-a[1]);
   const topRest = res.topRestaurant;
-  const topInfo = RESTAURANT_INFO[topRest] || { emoji:'🍽️', stars:'-', url:'#', cost:'-' };
-
-  // 日期統計排序
-  const dateEntries = Object.entries(res.dateCount || {}).sort((a,b) => b[1]-a[1]);
-
+  const topInfo = INFO[topRest]||{emoji:'🍽️',stars:'-',url:'#',cost:'-'};
+  const RANK = ['🥇','🥈','🥉','4️⃣','5️⃣','6️⃣','7️⃣','8️⃣','9️⃣','🔟'];
   let html = `<div style="text-align:center;margin-bottom:16px;color:var(--muted);font-size:14px">共 <strong style="color:var(--text);font-size:18px">${total}</strong> 人投票 · ${res.drinkCount} 人喝酒 🍺</div>`;
-
-  // 最高票餐廳
-  if (topRest) {
-    html += `
-    <div class="top-restaurant">
-      <div class="crown">👑</div>
-      <div class="name">${topInfo.emoji} ${topRest}</div>
-      <div class="votes">${res.topRestaurantCount} 票・⭐ ${topInfo.stars}・💰 ${topInfo.cost}</div>
-      <div style="margin-top:8px">
-        <a href="${topInfo.url}" target="_blank" style="color:var(--orange);font-size:13px;font-weight:600">📍 Google Maps →</a>
-      </div>
-    </div>`;
-  }
-
-  // 餐廳票數長條圖
+  if (topRest) html += `<div class="top-restaurant"><div class="crown">👑</div><div class="name">${topInfo.emoji} ${topRest}</div><div class="votes">${res.topRestaurantCount} 票・⭐ ${topInfo.stars}・💰 ${topInfo.cost}</div><div style="margin-top:8px"><a href="${topInfo.url}" target="_blank" style="color:var(--orange);font-size:13px;font-weight:600">📍 Google Maps →</a></div></div>`;
   html += `<div class="stats-section"><h3>🍜 餐廳票數</h3>`;
-  restEntries.forEach(([name, cnt]) => {
-    const pct = total > 0 ? Math.round(cnt/total*100) : 0;
-    const info = RESTAURANT_INFO[name] || { emoji:'🍽️' };
-    html += `<div class="bar-item">
-      <div class="bar-label"><span>${info.emoji} ${name}</span><span>${cnt} 票（${pct}%）</span></div>
-      <div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div>
-    </div>`;
+  restEntries.forEach(([name,cnt]) => {
+    const pct = Math.round(cnt/total*100);
+    const info = INFO[name]||{emoji:'🍽️'};
+    html += `<div class="bar-item"><div class="bar-label"><span>${info.emoji} ${name}</span><span>${cnt} 票（${pct}%）</span></div><div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div></div>`;
   });
   html += `</div>`;
-
-  // 菜色排名
-  if (res.topDishes && res.topDishes.length > 0) {
-    const RANK_EMOJI = ['🥇','🥈','🥉','4️⃣','5️⃣','6️⃣','7️⃣','8️⃣','9️⃣','🔟'];
-    html += `<div class="stats-section"><h3>🍽️ ${topRest} — 最想吃的菜 TOP${res.topDishes.length}</h3><div class="dish-rank">`;
-    res.topDishes.forEach((item, i) => {
-      html += `<div class="dish-rank-item">
-        <span class="rank-no">${RANK_EMOJI[i]||i+1}</span>
-        <span class="rank-name">${item.name}</span>
-        <span class="rank-count">${item.count} 票</span>
-      </div>`;
-    });
+  if (res.topDishes?.length > 0) {
+    html += `<div class="stats-section"><h3>🍽️ ${topRest} — 最想吃 TOP${res.topDishes.length}</h3><div class="dish-rank">`;
+    res.topDishes.forEach((item,i) => { html += `<div class="dish-rank-item"><span class="rank-no">${RANK[i]||i+1}</span><span class="rank-name">${item.name}</span><span class="rank-count">${item.count} 票</span></div>`; });
     html += `</div></div>`;
   }
-
-  // 大家都可以的日期
   html += `<div class="common-dates"><h4>✅ 大家都可以的日期</h4>`;
-  if (res.commonDates && res.commonDates.length > 0) {
-    html += `<div class="date-chips">${res.commonDates.map(d=>`<span class="date-chip">${d}</span>`).join('')}</div>`;
-  } else {
-    html += `<div class="no-common">目前還沒有所有人都可以的日期</div>`;
-  }
+  html += res.commonDates?.length > 0
+    ? `<div class="date-chips">${res.commonDates.map(d=>`<span class="date-chip">${d}</span>`).join('')}</div>`
+    : `<div class="no-common">目前還沒有所有人都可以的日期</div>`;
   html += `</div>`;
-
-  // 日期票數
   if (dateEntries.length > 0) {
     html += `<div class="stats-section" style="margin-top:16px"><h3>📅 各日期可參加人數</h3>`;
-    dateEntries.forEach(([date, cnt]) => {
-      const pct = total > 0 ? Math.round(cnt/total*100) : 0;
-      html += `<div class="bar-item">
-        <div class="bar-label"><span>📅 ${date}</span><span>${cnt}/${total} 人（${pct}%）</span></div>
-        <div class="bar-track"><div class="bar-fill green" style="width:${pct}%"></div></div>
-      </div>`;
+    dateEntries.forEach(([date,cnt]) => {
+      const pct = Math.round(cnt/total*100);
+      html += `<div class="bar-item"><div class="bar-label"><span>📅 ${date}</span><span>${cnt}/${total} 人（${pct}%）</span></div><div class="bar-track"><div class="bar-fill green" style="width:${pct}%"></div></div></div>`;
     });
     html += `</div>`;
   }
-
   document.getElementById('stats-content').innerHTML = html;
 }
 
-// ============================================================
-//  JSONP helper
-// ============================================================
 function jsonp(url, callback) {
   const cbName = '_jcb' + Date.now();
-  window[cbName] = (data) => {
-    callback(data);
-    delete window[cbName];
-    document.head.removeChild(script);
-  };
+  window[cbName] = (data) => { callback(data); delete window[cbName]; document.head.removeChild(script); };
   const script = document.createElement('script');
-  script.src = url + (url.includes('?') ? '&' : '?') + `callback=${cbName}&t=${Date.now()}`;
+  script.src = url + (url.includes('?')?'&':'?') + `callback=${cbName}&t=${Date.now()}`;
   script.onerror = () => { callback(null); delete window[cbName]; };
   document.head.appendChild(script);
 }
 
-// ============================================================
-//  Toast
-// ============================================================
 function showToast(msg, type) {
   const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.className = `toast ${type} show`;
+  t.textContent = msg; t.className = `toast ${type} show`;
   clearTimeout(window._toastTimer);
   window._toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
 }
