@@ -251,6 +251,14 @@ body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--text
     <button class="next-btn" onclick="nextStep(3)">下一步 →</button>
   </div>
 
+  <!-- 其它：快速送出卡片 -->
+  <div class="card step-hidden" id="step-other-submit" style="text-align:center;">
+    <div style="font-size:48px;margin-bottom:12px;">😅</div>
+    <div style="font-size:17px;font-weight:900;margin-bottom:6px;" id="other-reason-display"></div>
+    <div style="font-size:13px;color:var(--muted);margin-bottom:20px;">沒關係，下次有機會！還是記錄一下你的存在 😄</div>
+    <button class="submit-btn" onclick="submitVote()">📝 送出（我不去）</button>
+  </div>
+
   <!-- STEP 4 -->
   <div class="card step-hidden" id="step4">
     <div class="card-title">
@@ -376,7 +384,15 @@ function selectOtherReason(reason) {
   document.getElementById('other-dropdown').classList.remove('show');
   state.restaurant = '其它';
   state.otherReason = reason;
-  showToast(`已選：${reason}`, '');
+  state.dishes = [];
+  state.dates = [];
+  document.getElementById('other-reason-display').textContent = reason;
+  document.getElementById('step4').classList.add('step-hidden');
+  document.getElementById('step5').classList.add('step-hidden');
+  showStep('step-other-submit');
+  setTimeout(() => {
+    document.getElementById('step-other-submit').scrollIntoView({behavior:'smooth', block:'start'});
+  }, 100);
 }
 
 function selectCompany(btn, company) {
@@ -425,7 +441,7 @@ function submitVote() {
   if (!state.company)    return showToast('❗ 請選擇公司！','error');
   if (!state.drink)      return showToast('❗ 請選擇是否喝酒！','error');
   if (!state.restaurant) return showToast('❗ 請選擇一間餐廳！','error');
-  if (state.dates.length === 0) return showToast('❗ 請至少選一個可聚餐日期！','error');
+  if (state.restaurant !== '其它' && state.dates.length === 0) return showToast('❗ 請至少選一個可聚餐日期！','error');
   state.name = name;
   localStorage.setItem('jc_name', name);
   localStorage.setItem('jc_company', state.company);
