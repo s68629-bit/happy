@@ -13,6 +13,8 @@
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+
+/* Banner */
 .banner{background:linear-gradient(135deg,var(--red) 0%,var(--orange) 100%);color:white;padding:24px 20px 20px;text-align:center;position:relative;overflow:hidden;}
 .banner::before{content:'🍜🥢🍺🎉🍗🦞🔥';position:absolute;top:-4px;left:0;right:0;font-size:28px;letter-spacing:4px;opacity:.15;}
 .banner h1{font-size:28px;font-weight:900;letter-spacing:2px;}
@@ -20,22 +22,30 @@ body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--text
 .badge{background:rgba(255,255,255,.2);padding:2px 10px;border-radius:20px;font-size:12px;}
 .stats-btn{position:absolute;top:16px;right:16px;background:rgba(255,255,255,.25);color:white;border:2px solid rgba(255,255,255,.5);padding:6px 14px;border-radius:20px;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;}
 .stats-btn:hover{background:rgba(255,255,255,.4);}
+
+/* Container & Card */
 .container{max-width:600px;margin:0 auto;padding:20px 16px 80px;}
 .card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px;margin-bottom:16px;border:1px solid var(--border);animation:fadeIn .3s ease;}
 @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 .card-title{font-size:16px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
 .card-title .icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;}
 .icon-red{background:#FEE2E2;}.icon-orange{background:#FEF3C7;}.icon-green{background:#DCFCE7;}.icon-blue{background:#DBEAFE;}
+
+/* 輸入 */
 .input-group{margin-bottom:14px;}
 .input-group label{font-size:13px;font-weight:600;color:var(--muted);margin-bottom:6px;display:block;}
 .input-group input{width:100%;padding:12px 14px;border:2px solid var(--border);border-radius:10px;font-size:15px;font-family:inherit;transition:border-color .2s;background:#FFFAF7;}
 .input-group input:focus{outline:none;border-color:var(--orange);}
+
+/* 按鈕群 */
 .btn-group{display:flex;gap:8px;flex-wrap:wrap;}
 .opt-btn{padding:9px 16px;border-radius:10px;border:2px solid var(--border);background:white;font-size:14px;font-weight:500;cursor:pointer;transition:all .15s;font-family:inherit;color:var(--text);}
 .opt-btn:hover{border-color:var(--orange);background:#FFF7ED;}
 .opt-btn.selected{background:var(--orange);border-color:var(--orange);color:white;font-weight:700;}
 .opt-btn.drink-yes.selected{background:var(--red);border-color:var(--red);}
 .opt-btn.drink-no.selected{background:#64748B;border-color:#64748B;}
+
+/* 餐廳 */
 .restaurant-list{display:flex;flex-direction:column;gap:10px;}
 .rest-card{border:2px solid var(--border);border-radius:12px;padding:14px;cursor:pointer;transition:all .2s;background:white;display:flex;align-items:center;gap:12px;}
 .rest-card:hover{border-color:var(--orange);background:#FFFAF7;transform:translateY(-1px);}
@@ -45,7 +55,6 @@ body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--text
 .rest-name{font-size:15px;font-weight:700;}
 .rest-meta{font-size:12px;color:var(--muted);margin-top:3px;display:flex;gap:8px;flex-wrap:wrap;}
 .rest-meta a{color:var(--orange);text-decoration:none;}
-.rest-meta a:hover{text-decoration:underline;}
 .stars{color:#F59E0B;}
 .rest-check{font-size:22px;opacity:0;transition:opacity .2s;}
 .rest-card.selected .rest-check{opacity:1;}
@@ -54,29 +63,72 @@ body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--text
 .other-opt{display:block;width:100%;padding:10px 14px;margin-bottom:6px;border-radius:8px;border:2px solid var(--border);background:white;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;color:var(--text);text-align:left;transition:all .15s;}
 .other-opt:last-child{margin-bottom:0;}
 .other-opt:hover{background:#FEE2E2;border-color:var(--red);color:var(--red);}
+
+/* 菜色 */
 .dish-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;}
 @media(min-width:400px){.dish-grid{grid-template-columns:repeat(3,1fr);}}
 .dish-btn{padding:9px 8px;border-radius:10px;border:2px solid var(--border);background:white;font-size:13px;font-weight:500;cursor:pointer;transition:all .15s;font-family:inherit;color:var(--text);text-align:center;line-height:1.3;}
 .dish-btn:hover{border-color:var(--green);background:#F0FDF4;}
 .dish-btn.selected{background:var(--green);border-color:var(--green);color:white;font-weight:700;}
 .dish-hint{font-size:12px;color:var(--muted);margin-bottom:10px;}
-.date-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
-.date-btn{padding:12px 8px;border-radius:10px;border:2px solid var(--border);background:white;font-size:13px;font-weight:600;cursor:pointer;transition:all .15s;font-family:inherit;color:var(--text);text-align:center;}
-.date-btn:hover{border-color:var(--green);background:#F0FDF4;}
-.date-btn.selected{background:var(--green);border-color:var(--green);color:white;}
-.date-btn.disabled{background:#F3F4F6;border-color:#E5E7EB;color:#9CA3AF;cursor:not-allowed;}
-.submit-btn{width:100%;padding:16px;background:linear-gradient(135deg,var(--red),var(--orange));color:white;border:none;border-radius:12px;font-size:17px;font-weight:900;font-family:inherit;cursor:pointer;letter-spacing:1px;box-shadow:0 4px 15px rgba(232,64,64,.4);transition:all .2s;}
-.submit-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(232,64,64,.5);}
-.submit-btn:disabled{opacity:.6;cursor:not-allowed;transform:none;}
+
+/* ── 月曆 ── */
+.cal-hint{font-size:13px;color:var(--muted);margin-bottom:14px;line-height:1.6;}
+.cal-legend{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px;}
+.leg{display:flex;align-items:center;gap:5px;font-size:12px;font-weight:600;}
+.leg-dot{width:14px;height:14px;border-radius:4px;}
+.leg-dot.available{background:#DCFCE7;border:2px solid var(--green);}
+.leg-dot.busy{background:#FEE2E2;border:2px solid var(--red);}
+.leg-dot.holiday{background:#F3F4F6;border:2px solid #D1D5DB;}
+
+.cal-block{margin-bottom:20px;}
+.cal-month-title{font-size:15px;font-weight:900;margin-bottom:10px;color:var(--text);display:flex;align-items:center;gap:6px;}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;}
+.cal-dow{text-align:center;font-size:11px;font-weight:700;color:var(--muted);padding:4px 0;}
+.cal-dow.sun{color:#EF4444;}
+.cal-dow.sat{color:#3B82F6;}
+
+.cal-day{
+  aspect-ratio:1;border-radius:10px;border:2px solid var(--border);
+  background:#DCFCE7;cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  font-size:13px;font-weight:700;color:#166534;
+  transition:all .15s;position:relative;
+  -webkit-tap-highlight-color:transparent;
+}
+.cal-day:hover{transform:scale(1.05);box-shadow:0 2px 8px rgba(34,197,94,.3);}
+.cal-day.busy{background:#FEE2E2;border-color:var(--red);color:#991B1B;}
+.cal-day.busy:hover{box-shadow:0 2px 8px rgba(232,64,64,.3);}
+.cal-day.holiday{background:#F3F4F6;border-color:#E5E7EB;color:#9CA3AF;cursor:not-allowed;}
+.cal-day.holiday:hover{transform:none;box-shadow:none;}
+.cal-day.weekend{background:#F8FAFC;border-color:#E2E8F0;color:#CBD5E1;cursor:not-allowed;}
+.cal-day.weekend:hover{transform:none;box-shadow:none;}
+.cal-day.empty{background:transparent;border:none;cursor:default;}
+.cal-day.empty:hover{transform:none;}
+.cal-day-num{font-size:14px;font-weight:800;line-height:1;}
+.cal-day-label{font-size:9px;font-weight:600;margin-top:2px;opacity:.8;}
+
+/* 步驟 */
 .next-btn{width:100%;margin-top:12px;padding:12px;background:var(--orange);color:white;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .2s;}
 .next-btn:hover{background:#EA6A00;}
 .step-hidden{display:none;}
+
+/* 送出 */
+.submit-btn{width:100%;padding:16px;background:linear-gradient(135deg,var(--red),var(--orange));color:white;border:none;border-radius:12px;font-size:17px;font-weight:900;font-family:inherit;cursor:pointer;letter-spacing:1px;box-shadow:0 4px 15px rgba(232,64,64,.4);transition:all .2s;margin-top:12px;}
+.submit-btn:hover{transform:translateY(-2px);}
+.submit-btn:disabled{opacity:.6;cursor:not-allowed;transform:none;}
+
+/* 已投票 */
 .voted-banner{background:#FEF3C7;border:2px solid var(--yellow);border-radius:12px;padding:12px 16px;margin-bottom:16px;font-size:14px;font-weight:600;display:flex;align-items:center;gap:8px;}
 .edit-btn{margin-left:auto;background:var(--orange);color:white;border:none;padding:6px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;}
+
+/* Toast */
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:#1A1A1A;color:white;padding:12px 24px;border-radius:24px;font-size:14px;font-weight:600;box-shadow:0 8px 30px rgba(0,0,0,.3);transition:transform .3s ease,opacity .3s;opacity:0;z-index:999;white-space:nowrap;}
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1;}
 .toast.success{background:var(--green);}
 .toast.error{background:var(--red);}
+
+/* 贊助彈窗 */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:1000;align-items:center;justify-content:center;padding:20px;}
 .modal-overlay.show{display:flex;}
 .modal-box{background:white;border-radius:20px;padding:28px 24px;max-width:360px;width:100%;text-align:center;animation:popIn .3s cubic-bezier(.34,1.56,.64,1);}
@@ -91,6 +143,8 @@ body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--text
 .sponsor-btn.stock{border-color:#3B82F6;color:#1E3A8A;background:#EFF6FF;}
 .sponsor-btn.pocket{border-color:#EC4899;color:#831843;background:#FDF2F8;}
 .sponsor-btn.broke{border-color:#EF4444;color:#7F1D1D;background:#FEF2F2;}
+
+/* 統計頁 */
 .page{display:none;}
 .page.active{display:block;}
 .stats-section{margin-bottom:20px;}
@@ -104,7 +158,7 @@ body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--text
 .top-restaurant .crown{font-size:32px;}
 .top-restaurant .name{font-size:20px;font-weight:900;margin:4px 0;}
 .top-restaurant .votes{font-size:14px;color:var(--muted);}
-.common-dates{background:#F0FDF4;border:2px solid var(--green);border-radius:12px;padding:14px;}
+.common-dates{background:#F0FDF4;border:2px solid var(--green);border-radius:12px;padding:14px;margin-bottom:16px;}
 .common-dates h4{font-size:14px;font-weight:700;color:#16A34A;margin-bottom:8px;}
 .date-chips{display:flex;gap:6px;flex-wrap:wrap;}
 .date-chip{background:var(--green);color:white;padding:5px 12px;border-radius:20px;font-size:13px;font-weight:700;}
@@ -133,6 +187,7 @@ body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--text
   </div>
 </div>
 
+<!-- ====== 投票頁 ====== -->
 <div id="page-vote" class="page active">
 <div class="container">
 
@@ -173,85 +228,61 @@ body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--text
   <div class="card step-hidden" id="step3">
     <div class="card-title"><div class="icon icon-red">🍜</div>選一間餐廳</div>
     <div class="restaurant-list">
-
       <div class="rest-card" onclick="selectRestaurant(this,'嚐嚐九九-中壢店')">
         <div class="rest-emoji">🥘</div>
         <div class="rest-info">
           <div class="rest-name">嚐嚐九九－中壢店</div>
-          <div class="rest-meta">
-            <span class="stars">★★★★☆</span><span>4.3（4,259 評）</span><span>💰 $200-400</span>
-            <a href="https://maps.app.goo.gl/xsyeUPikycMGbtis9" target="_blank" onclick="event.stopPropagation()">📍 地圖</a>
-          </div>
-        </div>
-        <div class="rest-check">✅</div>
+          <div class="rest-meta"><span class="stars">★★★★☆</span><span>4.3（4,259 評）</span><span>💰 $200-400</span>
+            <a href="https://maps.app.goo.gl/xsyeUPikycMGbtis9" target="_blank" onclick="event.stopPropagation()">📍 地圖</a></div>
+        </div><div class="rest-check">✅</div>
       </div>
-
       <div class="rest-card" onclick="selectRestaurant(this,'好漢莊甕子雞')">
         <div class="rest-emoji">🍗</div>
         <div class="rest-info">
           <div class="rest-name">好漢莊甕子雞</div>
-          <div class="rest-meta">
-            <span class="stars">★★★★☆</span><span>4.3（2,650 評）</span><span>💰 $400-600</span>
-            <a href="https://maps.app.goo.gl/tzHg5cXhRoEZ6GMk9" target="_blank" onclick="event.stopPropagation()">📍 地圖</a>
-          </div>
-        </div>
-        <div class="rest-check">✅</div>
+          <div class="rest-meta"><span class="stars">★★★★☆</span><span>4.3（2,650 評）</span><span>💰 $400-600</span>
+            <a href="https://maps.app.goo.gl/tzHg5cXhRoEZ6GMk9" target="_blank" onclick="event.stopPropagation()">📍 地圖</a></div>
+        </div><div class="rest-check">✅</div>
       </div>
-
       <div class="rest-card" onclick="selectRestaurant(this,'火車頭海鮮')">
         <div class="rest-emoji">🦞</div>
         <div class="rest-info">
           <div class="rest-name">火車頭海鮮</div>
-          <div class="rest-meta">
-            <span class="stars">★★★★☆</span><span>3.9（3,302 評）</span><span>💰 $200-400</span>
-            <a href="https://maps.app.goo.gl/qP92JAUFGpLsh6jK7" target="_blank" onclick="event.stopPropagation()">📍 地圖</a>
-          </div>
-        </div>
-        <div class="rest-check">✅</div>
+          <div class="rest-meta"><span class="stars">★★★★☆</span><span>3.9（3,302 評）</span><span>💰 $200-400</span>
+            <a href="https://maps.app.goo.gl/qP92JAUFGpLsh6jK7" target="_blank" onclick="event.stopPropagation()">📍 地圖</a></div>
+        </div><div class="rest-check">✅</div>
       </div>
-
       <div class="rest-card" onclick="selectRestaurant(this,'九鼎海鮮熱炒')">
         <div class="rest-emoji">🔥</div>
         <div class="rest-info">
           <div class="rest-name">九鼎海鮮熱炒</div>
-          <div class="rest-meta">
-            <span class="stars">★★★★☆</span><span>4.2（912 評）</span><span>💰 $400-400</span>
-            <a href="https://maps.app.goo.gl/zK1MDvZi5HMBY8vf8" target="_blank" onclick="event.stopPropagation()">📍 地圖</a>
-          </div>
-        </div>
-        <div class="rest-check">✅</div>
+          <div class="rest-meta"><span class="stars">★★★★☆</span><span>4.2（912 評）</span><span>💰 $400-400</span>
+            <a href="https://maps.app.goo.gl/zK1MDvZi5HMBY8vf8" target="_blank" onclick="event.stopPropagation()">📍 地圖</a></div>
+        </div><div class="rest-check">✅</div>
       </div>
-
       <div class="rest-card" onclick="selectRestaurant(this,'阿來快炒')">
         <div class="rest-emoji">🥬</div>
         <div class="rest-info">
           <div class="rest-name">阿來快炒</div>
-          <div class="rest-meta">
-            <span class="stars">★★★★☆</span><span>4.2（849 評）</span><span>💰 $400-600</span>
-            <a href="https://maps.app.goo.gl/yWbexaNpRfyLAwM66" target="_blank" onclick="event.stopPropagation()">📍 地圖</a>
-          </div>
-        </div>
-        <div class="rest-check">✅</div>
+          <div class="rest-meta"><span class="stars">★★★★☆</span><span>4.2（849 評）</span><span>💰 $400-600</span>
+            <a href="https://maps.app.goo.gl/yWbexaNpRfyLAwM66" target="_blank" onclick="event.stopPropagation()">📍 地圖</a></div>
+        </div><div class="rest-check">✅</div>
       </div>
-
       <div class="rest-card" id="other-card" onclick="toggleOtherDropdown()">
         <div class="rest-emoji">💬</div>
-        <div class="rest-info">
-          <div class="rest-name">其它</div>
-          <div class="rest-meta"><span>點我展開選項...</span></div>
-        </div>
+        <div class="rest-info"><div class="rest-name">其它</div>
+          <div class="rest-meta"><span>點我展開選項...</span></div></div>
         <div class="rest-check" id="other-check" style="opacity:0">✅</div>
       </div>
       <div class="other-dropdown" id="other-dropdown">
         <button class="other-opt" onclick="selectOtherReason('實在太遠、下次再說')">😅 實在太遠、下次再說</button>
         <button class="other-opt" onclick="selectOtherReason('嘴炮+1（要帶小孩）')">👶 嘴炮+1（要帶小孩）</button>
       </div>
-
     </div>
     <button class="next-btn" onclick="nextStep(3)">下一步 →</button>
   </div>
 
-  <!-- 其它：快速送出卡片 -->
+  <!-- 其它快速送出 -->
   <div class="card step-hidden" id="step-other-submit" style="text-align:center;">
     <div style="font-size:48px;margin-bottom:12px;">😅</div>
     <div style="font-size:17px;font-weight:900;margin-bottom:6px;" id="other-reason-display"></div>
@@ -270,30 +301,29 @@ body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--text
     <button class="next-btn" onclick="nextStep(4)">下一步 →</button>
   </div>
 
-  <!-- STEP 5 -->
+  <!-- STEP 5: 月曆 -->
   <div class="card step-hidden" id="step5">
     <div class="card-title">
       <div class="icon icon-blue">📅</div>
-      你哪天可以？<span style="font-size:12px;font-weight:400;color:var(--muted);margin-left:4px">（可複選）</span>
+      哪些天你<strong style="color:var(--red)">不能</strong>去？
     </div>
-    <div class="date-grid">
-      <button class="date-btn disabled" onclick="showFunnyMsg('holiday')">5/1<br><span style="font-size:11px">五</span></button>
-      <button class="date-btn" onclick="toggleDate(this,'5/7')">5/7<br><span style="font-size:11px">四</span></button>
-      <button class="date-btn" onclick="toggleDate(this,'5/8')">5/8<br><span style="font-size:11px">五</span></button>
-      <button class="date-btn" onclick="toggleDate(this,'5/14')">5/14<br><span style="font-size:11px">四</span></button>
-      <button class="date-btn" onclick="toggleDate(this,'5/15')">5/15<br><span style="font-size:11px">五</span></button>
-      <button class="date-btn" onclick="toggleDate(this,'5/21')">5/21<br><span style="font-size:11px">四</span></button>
-      <button class="date-btn" onclick="toggleDate(this,'5/22')">5/22<br><span style="font-size:11px">五</span></button>
-      <button class="date-btn" onclick="toggleDate(this,'5/28')">5/28<br><span style="font-size:11px">四</span></button>
-      <button class="date-btn" onclick="toggleDate(this,'5/29')">5/29<br><span style="font-size:11px">五</span></button>
+    <div class="cal-hint">
+      🟢 預設全部可以去，點選<strong>不能去</strong>的日期讓它變紅。<br>
+      週末與國定假日已灰掉。
     </div>
-    <button class="submit-btn" id="submit-btn" style="margin-top:16px" onclick="submitVote()">🎉 送出投票</button>
+    <div class="cal-legend">
+      <div class="leg"><div class="leg-dot available"></div>可以去</div>
+      <div class="leg"><div class="leg-dot busy"></div>不能去（點選）</div>
+      <div class="leg"><div class="leg-dot holiday"></div>假日/週末</div>
+    </div>
+    <div id="cal-container"></div>
+    <button class="submit-btn" id="submit-btn" onclick="submitVote()">🎉 送出投票</button>
   </div>
 
 </div>
 </div>
 
-<!-- 統計頁 -->
+<!-- ====== 統計頁 ====== -->
 <div id="page-stats" class="page">
 <div class="container">
   <div class="card">
@@ -324,6 +354,25 @@ body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--text
 <script>
 const GAS_URL = 'https://script.google.com/macros/s/AKfycbyU5N-nVRA2_6cdbTyed6EMvgtKs4vgmZax6bBK-RuHHNx8wP-ZyvKgUq-eSjIrNSl3tw/exec';
 
+// ── 東立材料 2026 放假日（週末另外判斷）──
+const HOLIDAYS = new Set([
+  '2026-01-01', // 元旦
+  '2026-02-15', '2026-02-16', '2026-02-17', '2026-02-18', '2026-02-19', // 春節
+  '2026-02-20', '2026-02-27', '2026-02-28', // 補假
+  '2026-04-03', '2026-04-04', '2026-04-05', '2026-04-06', // 兒童節/清明
+  '2026-05-01', // 勞動節
+  '2026-06-19', // 端午節
+  '2026-09-25', '2026-09-28', // 中秋/孔子誕辰
+  '2026-10-09', '2026-10-10', '2026-10-25', '2026-10-26', // 國慶/光復節
+  '2026-12-25', // 行憲紀念日
+]);
+
+// ── 顯示月份：5月、6月 ──
+const SHOW_MONTHS = [
+  { year: 2026, month: 5 },
+  { year: 2026, month: 6 },
+];
+
 const DISHES = {
   '嚐嚐九九-中壢店': ['三杯燒雞丁','宮保雞丁','泰式椒麻雞','椒鹽龍珠','蒜蓉蒸鮑魚（6顆）','一品花雕雞','麻油松阪肉','酸白菜松板肉','蒜蓉蒸鮮蝦','薑燒海大蝦','清蒸鱸魚','泰式檸檬鱸魚','泰式拌海鮮','月亮海鮮餅','炒海瓜子','蜜汁排骨','糖醋排骨','金沙中卷','蜜汁中卷','蔥爆蛤蜊湯（小）','鹹蛋苦瓜','紹興醉蝦','$99超值限定','椒鹽魚下巴','豬肝炒韭菜','蒜炒空心菜'],
   '好漢莊甕子雞': ['黃金窯烤雞','泰式嘉炸雞','清蒸山泉鮮鱸魚','糖醋鮮鱸魚','紅燒鮮魚','蒜蓉蒸鮮蝦','薑燒海大蝦','清蒸鱸魚','泰式拌海鮮','月亮海鮮餅','炒海瓜子','鳳梨蝦球','三杯米血中卷','蜜汁中卷','金沙中卷','宮保雞丁','口水雞','滑蛋牛肉','鐵板牛肉','蔥爆蛤蜊湯（小）','蜜汁排骨','酸菜白肉鍋','蔥爆山豬肉','椒麻牛肚','泰式檸檬蝦','招牌腸旺賣'],
@@ -332,21 +381,131 @@ const DISHES = {
   '阿來快炒': ['招牌脆皮雞','麻油雞佛','胡椒風螺活','麻油雞拼（超值）','泰式軟殼蟹','蔗味牛小排','泰式酸辣豬肉','客家小炒','蔥爆牛肉','沙茶牛肉','塔香蛤蜊','蒜泥鮮蚵','炒蛤蜊','月亮蝦餅','酥炸鮮蚵','鳳梨蝦球','霸王海鮮鍋','三杯雞腿','鮮蚵豆腐煲','砂鍋魚頭','椒鹽田雞','紅糟鰻','沙茶羊肉','鹽酥蝦','茄汁蝦仁','大黑板手寫菜（當日限定）']
 };
 
-let state = { name:'', company:'', drink:'', restaurant:'', dishes:[], dates:[], isEditing:false, voterId:'', otherReason:'' };
+const MONTH_NAMES = ['','一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'];
+const DOW_NAMES = ['日','一','二','三','四','五','六'];
 
+let state = {
+  name:'', company:'', drink:'', restaurant:'', dishes:[], busyDates:[],
+  isEditing:false, voterId:'', otherReason:''
+};
+
+// ── 月曆渲染 ──
+function renderCalendar() {
+  const container = document.getElementById('cal-container');
+  container.innerHTML = '';
+
+  SHOW_MONTHS.forEach(({ year, month }) => {
+    const block = document.createElement('div');
+    block.className = 'cal-block';
+
+    // 月份標題
+    const title = document.createElement('div');
+    title.className = 'cal-month-title';
+    title.textContent = `📅 ${year} 年 ${MONTH_NAMES[month]}`;
+    block.appendChild(title);
+
+    // 星期列
+    const grid = document.createElement('div');
+    grid.className = 'cal-grid';
+    DOW_NAMES.forEach((d, i) => {
+      const dow = document.createElement('div');
+      dow.className = 'cal-dow' + (i === 0 ? ' sun' : i === 6 ? ' sat' : '');
+      dow.textContent = d;
+      grid.appendChild(dow);
+    });
+
+    // 第一天是星期幾
+    const firstDow = new Date(year, month - 1, 1).getDay();
+    // 補空格
+    for (let i = 0; i < firstDow; i++) {
+      const empty = document.createElement('div');
+      empty.className = 'cal-day empty';
+      grid.appendChild(empty);
+    }
+
+    // 每一天
+    const daysInMonth = new Date(year, month, 0).getDate();
+    for (let d = 1; d <= daysInMonth; d++) {
+      const dateObj = new Date(year, month - 1, d);
+      const dow = dateObj.getDay();
+      const dateKey = `${year}-${String(month).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+      const isWeekend = dow === 0 || dow === 6;
+      const isHoliday = HOLIDAYS.has(dateKey);
+
+      const cell = document.createElement('div');
+      cell.className = 'cal-day';
+      cell.dataset.date = dateKey;
+
+      const numEl = document.createElement('div');
+      numEl.className = 'cal-day-num';
+      numEl.textContent = d;
+      cell.appendChild(numEl);
+
+      if (isWeekend) {
+        cell.classList.add('weekend');
+        const lbl = document.createElement('div');
+        lbl.className = 'cal-day-label';
+        lbl.textContent = dow === 0 ? '日' : '六';
+        cell.appendChild(lbl);
+      } else if (isHoliday) {
+        cell.classList.add('holiday');
+        const lbl = document.createElement('div');
+        lbl.className = 'cal-day-label';
+        lbl.textContent = '假';
+        cell.appendChild(lbl);
+      } else {
+        // 平日，可點選
+        if (state.busyDates.includes(dateKey)) {
+          cell.classList.add('busy');
+          const lbl = document.createElement('div');
+          lbl.className = 'cal-day-label';
+          lbl.textContent = '✗';
+          cell.appendChild(lbl);
+        }
+        cell.addEventListener('click', () => toggleBusyDate(cell, dateKey));
+      }
+
+      grid.appendChild(cell);
+    }
+    block.appendChild(grid);
+    container.appendChild(block);
+  });
+}
+
+function toggleBusyDate(cell, dateKey) {
+  const isBusy = cell.classList.contains('busy');
+  if (isBusy) {
+    cell.classList.remove('busy');
+    state.busyDates = state.busyDates.filter(d => d !== dateKey);
+    // 移除 ✗ label
+    const lbl = cell.querySelector('.cal-day-label');
+    if (lbl) lbl.remove();
+  } else {
+    cell.classList.add('busy');
+    state.busyDates.push(dateKey);
+    const lbl = document.createElement('div');
+    lbl.className = 'cal-day-label';
+    lbl.textContent = '✗';
+    cell.appendChild(lbl);
+  }
+}
+
+// ── voter ID ──
 function getVoterId(name, company) {
   return btoa(encodeURIComponent(`${name}|${company}`)).replace(/=/g,'');
 }
 
+// ── 初始化 ──
 window.addEventListener('DOMContentLoaded', () => {
   const savedName = localStorage.getItem('jc_name') || '';
   if (savedName) { document.getElementById('name').value = savedName; state.name = savedName; }
+  renderCalendar();
   checkExistingVote();
 });
 
 function onNameInput() { state.name = document.getElementById('name').value.trim(); }
 
-// 逐步顯示
+// ── 逐步顯示 ──
 function nextStep(step) {
   if (step === 1) {
     if (!document.getElementById('name').value.trim()) return showToast('❗ 請輸入姓名！','error');
@@ -364,7 +523,7 @@ function nextStep(step) {
   }
   setTimeout(() => {
     const next = document.getElementById(`step${step+1}`);
-    if (next) next.scrollIntoView({behavior:'smooth', block:'start'});
+    if (next && !next.classList.contains('step-hidden')) next.scrollIntoView({behavior:'smooth', block:'start'});
   }, 100);
 }
 
@@ -373,7 +532,7 @@ function showStep(id) {
   if (el) el.classList.remove('step-hidden');
 }
 
-// 其它
+// ── 其它 ──
 function toggleOtherDropdown() {
   document.getElementById('other-dropdown').classList.toggle('show');
 }
@@ -385,14 +544,12 @@ function selectOtherReason(reason) {
   state.restaurant = '其它';
   state.otherReason = reason;
   state.dishes = [];
-  state.dates = [];
+  state.busyDates = [];
   document.getElementById('other-reason-display').textContent = reason;
   document.getElementById('step4').classList.add('step-hidden');
   document.getElementById('step5').classList.add('step-hidden');
   showStep('step-other-submit');
-  setTimeout(() => {
-    document.getElementById('step-other-submit').scrollIntoView({behavior:'smooth', block:'start'});
-  }, 100);
+  setTimeout(() => document.getElementById('step-other-submit').scrollIntoView({behavior:'smooth', block:'start'}), 100);
 }
 
 function selectCompany(btn, company) {
@@ -425,23 +582,14 @@ function toggleDish(btn, dish) {
   if (btn.classList.contains('selected')) { if (!state.dishes.includes(dish)) state.dishes.push(dish); }
   else state.dishes = state.dishes.filter(d => d !== dish);
 }
-function toggleDate(btn, date) {
-  btn.classList.toggle('selected');
-  if (btn.classList.contains('selected')) { if (!state.dates.includes(date)) state.dates.push(date); }
-  else state.dates = state.dates.filter(d => d !== date);
-}
-function showFunnyMsg(type) {
-  if (type === 'holiday') showToast('🏖️ 勞動節放假哦！要去你自己去！','error');
-}
 
-// 送出
+// ── 送出 ──
 function submitVote() {
   const name = document.getElementById('name').value.trim();
   if (!name)             return showToast('❗ 請輸入姓名！','error');
   if (!state.company)    return showToast('❗ 請選擇公司！','error');
   if (!state.drink)      return showToast('❗ 請選擇是否喝酒！','error');
   if (!state.restaurant) return showToast('❗ 請選擇一間餐廳！','error');
-  if (state.restaurant !== '其它' && state.dates.length === 0) return showToast('❗ 請至少選一個可聚餐日期！','error');
   state.name = name;
   localStorage.setItem('jc_name', name);
   localStorage.setItem('jc_company', state.company);
@@ -467,35 +615,39 @@ function doSubmit(sponsor) {
     voter_id: voterId, name: state.name, company: state.company,
     drink: state.drink,
     restaurant: state.restaurant + (state.otherReason ? `（${state.otherReason}）` : ''),
-    dishes: state.dishes, dates: state.dates, sponsor: sponsor
+    dishes: state.dishes,
+    busy_dates: state.busyDates,  // 改為儲存「不能去」的日期
+    sponsor: sponsor
   };
-  const btn = document.getElementById('submit-btn');
-  btn.disabled = true; btn.textContent = '⏳ 送出中...';
+  const btn = document.getElementById('submit-btn') || document.querySelector('#step-other-submit .submit-btn');
+  if (btn) { btn.disabled = true; btn.textContent = '⏳ 送出中...'; }
   fetch(GAS_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) })
   .then(() => {
     state.isEditing = false; disableForm(true);
     document.getElementById('voted-banner').innerHTML =
       `✅ <strong>${state.name}</strong>，你已投票！<button class="edit-btn" onclick="enableEdit()">✏️ 修改投票</button>`;
     document.getElementById('voted-banner').style.display = 'flex';
-    btn.textContent = '✅ 已投票（點修改按鈕可修改）';
+    if (btn) btn.textContent = '✅ 已送出';
+    showToast('🎉 投票成功！', 'success');
   }).catch(() => {
     showToast('❌ 送出失敗，請再試一次','error');
-    btn.disabled = false;
-    btn.textContent = state.isEditing ? '💾 確認修改' : '🎉 送出投票';
+    if (btn) { btn.disabled = false; btn.textContent = '🎉 送出投票'; }
   });
 }
 
 function resetForm() {
-  state = { name:'', company:'', drink:'', restaurant:'', dishes:[], dates:[], isEditing:false, voterId:'', otherReason:'' };
+  state = { name:'', company:'', drink:'', restaurant:'', dishes:[], busyDates:[], isEditing:false, voterId:'', otherReason:'' };
   document.getElementById('name').value = '';
-  document.querySelectorAll('.opt-btn.selected,.rest-card.selected,.dish-btn.selected,.date-btn.selected').forEach(el => el.classList.remove('selected'));
+  document.querySelectorAll('.opt-btn.selected,.rest-card.selected,.dish-btn.selected').forEach(el => el.classList.remove('selected'));
   document.getElementById('other-check').style.opacity = '0';
-  ['step2','step3','step4','step5'].forEach(id => document.getElementById(id).classList.add('step-hidden'));
-  document.getElementById('submit-btn').disabled = false;
-  document.getElementById('submit-btn').textContent = '🎉 送出投票';
+  ['step2','step3','step4','step5','step-other-submit'].forEach(id => document.getElementById(id).classList.add('step-hidden'));
+  const btn = document.getElementById('submit-btn');
+  if (btn) { btn.disabled = false; btn.textContent = '🎉 送出投票'; }
+  renderCalendar();
   window.scrollTo({top:0, behavior:'smooth'});
 }
 
+// ── 已投票 ──
 function checkExistingVote() {
   const savedName = localStorage.getItem('jc_name') || '';
   const savedCompany = localStorage.getItem('jc_company') || '';
@@ -513,15 +665,16 @@ function showVotedBanner(name) {
   disableForm(true);
 }
 function disableForm(val) {
-  document.getElementById('submit-btn').disabled = val;
-  if (val) document.getElementById('submit-btn').textContent = '✅ 已投票（點修改按鈕可修改）';
+  const btn = document.getElementById('submit-btn');
+  if (btn) { btn.disabled = val; if (val) btn.textContent = '✅ 已投票（點修改按鈕可修改）'; }
 }
 function enableEdit() {
   state.isEditing = true;
   document.getElementById('voted-banner').style.display = 'none';
   ['step2','step3','step4','step5'].forEach(id => showStep(id));
   disableForm(false);
-  document.getElementById('submit-btn').textContent = '💾 確認修改';
+  const btn = document.getElementById('submit-btn');
+  if (btn) btn.textContent = '💾 確認修改';
   showToast('✏️ 修改模式，改完再按送出！','success');
 }
 function loadExistingVote(voterId) {
@@ -549,13 +702,26 @@ function loadExistingVote(voterId) {
         if (state.dishes.includes(btn.textContent)) btn.classList.add('selected');
       });
     }, 200);
-    state.dates = d.dates||[];
-    document.querySelectorAll('.date-btn:not(.disabled)').forEach(btn => {
-      if (state.dates.includes(btn.textContent.trim().replace(/\n.*/,''))) btn.classList.add('selected');
-    });
+    // 載入不能去日期
+    state.busyDates = d.busy_dates||[];
+    setTimeout(() => {
+      state.busyDates.forEach(dateKey => {
+        const cell = document.querySelector(`.cal-day[data-date="${dateKey}"]`);
+        if (cell && !cell.classList.contains('holiday') && !cell.classList.contains('weekend')) {
+          cell.classList.add('busy');
+          if (!cell.querySelector('.cal-day-label')) {
+            const lbl = document.createElement('div');
+            lbl.className = 'cal-day-label';
+            lbl.textContent = '✗';
+            cell.appendChild(lbl);
+          }
+        }
+      });
+    }, 300);
   });
 }
 
+// ── 統計頁 ──
 function showStats() {
   document.getElementById('page-vote').classList.remove('active');
   document.getElementById('page-stats').classList.add('active');
@@ -584,12 +750,14 @@ function renderStats(res) {
   const total = res.totalVoters;
   if (total === 0) { document.getElementById('stats-content').innerHTML = '<div style="text-align:center;padding:30px;color:var(--muted)">😴 還沒有人投票，快去揪人！</div>'; return; }
   const restEntries = Object.entries(res.restaurantCount||{}).sort((a,b)=>b[1]-a[1]);
-  const dateEntries = Object.entries(res.dateCount||{}).sort((a,b)=>b[1]-a[1]);
   const topRest = res.topRestaurant;
   const topInfo = INFO[topRest]||{emoji:'🍽️',stars:'-',url:'#',cost:'-'};
   const RANK = ['🥇','🥈','🥉','4️⃣','5️⃣','6️⃣','7️⃣','8️⃣','9️⃣','🔟'];
+
   let html = `<div style="text-align:center;margin-bottom:16px;color:var(--muted);font-size:14px">共 <strong style="color:var(--text);font-size:18px">${total}</strong> 人投票 · ${res.drinkCount} 人喝酒 🍺</div>`;
+
   if (topRest) html += `<div class="top-restaurant"><div class="crown">👑</div><div class="name">${topInfo.emoji} ${topRest}</div><div class="votes">${res.topRestaurantCount} 票・⭐ ${topInfo.stars}・💰 ${topInfo.cost}</div><div style="margin-top:8px"><a href="${topInfo.url}" target="_blank" style="color:var(--orange);font-size:13px;font-weight:600">📍 Google Maps →</a></div></div>`;
+
   html += `<div class="stats-section"><h3>🍜 餐廳票數</h3>`;
   restEntries.forEach(([name,cnt]) => {
     const pct = Math.round(cnt/total*100);
@@ -597,27 +765,43 @@ function renderStats(res) {
     html += `<div class="bar-item"><div class="bar-label"><span>${info.emoji} ${name}</span><span>${cnt} 票（${pct}%）</span></div><div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div></div>`;
   });
   html += `</div>`;
+
   if (res.topDishes?.length > 0) {
     html += `<div class="stats-section"><h3>🍽️ ${topRest} — 最想吃 TOP${res.topDishes.length}</h3><div class="dish-rank">`;
     res.topDishes.forEach((item,i) => { html += `<div class="dish-rank-item"><span class="rank-no">${RANK[i]||i+1}</span><span class="rank-name">${item.name}</span><span class="rank-count">${item.count} 票</span></div>`; });
     html += `</div></div>`;
   }
+
+  // 大家都可以的日期（用 busy_dates 反推）
   html += `<div class="common-dates"><h4>✅ 大家都可以的日期</h4>`;
-  html += res.commonDates?.length > 0
-    ? `<div class="date-chips">${res.commonDates.map(d=>`<span class="date-chip">${d}</span>`).join('')}</div>`
-    : `<div class="no-common">目前還沒有所有人都可以的日期</div>`;
+  if (res.commonDates?.length > 0) {
+    html += `<div class="date-chips">${res.commonDates.map(d=>`<span class="date-chip">${formatDateKey(d)}</span>`).join('')}</div>`;
+  } else {
+    html += `<div class="no-common">目前還沒有找到大家都可以的日期</div>`;
+  }
   html += `</div>`;
-  if (dateEntries.length > 0) {
-    html += `<div class="stats-section" style="margin-top:16px"><h3>📅 各日期可參加人數</h3>`;
-    dateEntries.forEach(([date,cnt]) => {
-      const pct = Math.round(cnt/total*100);
-      html += `<div class="bar-item"><div class="bar-label"><span>📅 ${date}</span><span>${cnt}/${total} 人（${pct}%）</span></div><div class="bar-track"><div class="bar-fill green" style="width:${pct}%"></div></div></div>`;
+
+  // 各日期可參加人數（有去意願且那天沒標不能）
+  if (res.availableDates?.length > 0) {
+    html += `<div class="stats-section"><h3>📅 各日期可參加人數（去掉不能去的人）</h3>`;
+    res.availableDates.forEach(({ date, count, total: t }) => {
+      const pct = Math.round(count/t*100);
+      html += `<div class="bar-item"><div class="bar-label"><span>📅 ${formatDateKey(date)}</span><span>${count}/${t} 人（${pct}%）</span></div><div class="bar-track"><div class="bar-fill green" style="width:${pct}%"></div></div></div>`;
     });
     html += `</div>`;
   }
+
   document.getElementById('stats-content').innerHTML = html;
 }
 
+function formatDateKey(dateKey) {
+  // 2026-05-08 → 5/8（五）
+  const d = new Date(dateKey + 'T00:00:00+08:00');
+  const dow = ['日','一','二','三','四','五','六'][d.getDay()];
+  return `${d.getMonth()+1}/${d.getDate()}（${dow}）`;
+}
+
+// ── JSONP ──
 function jsonp(url, callback) {
   const cbName = '_jcb' + Date.now();
   window[cbName] = (data) => { callback(data); delete window[cbName]; document.head.removeChild(script); };
@@ -627,6 +811,7 @@ function jsonp(url, callback) {
   document.head.appendChild(script);
 }
 
+// ── Toast ──
 function showToast(msg, type) {
   const t = document.getElementById('toast');
   t.textContent = msg; t.className = `toast ${type} show`;
